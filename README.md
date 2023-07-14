@@ -24,6 +24,10 @@
 
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> ![react](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC?style=for-the-badge&logo=redux&logoColor=white) ![JSON Server](https://img.shields.io/badge/JSON_Server-FF6384?style=for-the-badge&logo=json&logoColor=white) ![axios](https://img.shields.io/badge/axios-35495E?style=for-the-badge&logo=axios&logoColor=white) ![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) <img src="https://img.shields.io/badge/visual studio code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
+### 3. 팀 레퍼런스 주소
+[Notion](https://www.notion.so/5-EscapeDiary-9637b15e1d27465ab820e2127e152b45)
+
+[BackEnd GitHub](https://github.com/since1630/EscapeDiary-BE)
 <!-- ### 3. 프로젝트 내용 -->
 
 <!-- ![projectTemp](https://user-images.githubusercontent.com/87955005/152466049-f9c573aa-ebed-4978-a027-0cc82364b1d6.png)
