@@ -1,9 +1,11 @@
 import React from 'react';
 import { styled } from "styled-components";
 import Button from "../components/common/Button";
+import useNavigation from "../hooks/useNavigation";
 
 const Create = () => {
 
+  const { goToPath } = useNavigation();
   const starOptions = [];
   for (let i = 0; i <= 5; i++) {
     starOptions.push(<option key={i}>{i == 0 ? '별점을 선택해주세요.' : '⭐'.repeat(i)}</option>);
@@ -27,6 +29,7 @@ const Create = () => {
           <textarea placeholder='내용을 입력해주세요.'></textarea>
         </CreateTextArea>
         <CreateButton>
+          <Button onClick={() => goToPath("/")} color={"white"} size={"medium"}>목록</Button>
           <Button color={"black"} size={"medium"}>작성</Button>
         </CreateButton>
       </CreateContainer>
@@ -119,4 +122,5 @@ const CreateButton = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+  gap: 19rem;
 `;
