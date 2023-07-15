@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Button from "../components/common/Button";
 import { styled } from "styled-components";
 import List from "../components/List";
+import useNavigation from "../hooks/useNavigation";
 
 const Main = () => {
+  const { goToPath } = useNavigation();
   const [user, setUser] = useState(false);
   const [dummy, setDummy] = useState([
     {
@@ -75,7 +77,11 @@ const Main = () => {
       </Header>
       <MainBody>
         <div className="MainButtonSection">
-          <Button color={"black"} size={"medium"}>
+          <Button
+            color={"black"}
+            size={"medium"}
+            onClick={() => goToPath("/create")}
+          >
             리뷰 쓰기
           </Button>
         </div>
@@ -87,6 +93,7 @@ const Main = () => {
               content={item.content}
               date={item.date}
               star={item.star}
+              onClick={() => goToPath("/detail/postId")}
             />
           ))}
         </div>

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import Button from "../components/common/Button";
+import useNavigation from "../hooks/useNavigation";
 
 const Detail = () => {
+  const { goBack } = useNavigation();
   const [user, setUser] = useState(false);
   return (
     <DetailWrap>
       <DetailContainer>
         <DetailHeader>
-          <div className="backIcon">←</div>
+          <div className="backIcon" onClick={goBack}>
+            ←
+          </div>
           {/* icon 처리 */}
           <h1>방탈출 후기</h1>
           <div className="detailStar">"⭐⭐⭐⭐⭐"</div>
@@ -61,6 +65,7 @@ const DetailHeader = styled.div`
     left: 2rem;
     font-size: 2rem;
     font-weight: bold;
+    cursor: pointer;
   }
   h1 {
     font-size: 3rem;
