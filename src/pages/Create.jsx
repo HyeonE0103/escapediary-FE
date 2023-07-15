@@ -59,7 +59,7 @@ const CreateContainer = styled.div`
   h1 {
     font-size: 3rem;
     font-weight: bold;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 `
 
@@ -93,6 +93,8 @@ const CreateSelect = styled.div`
     width: 100%;
     background-color: rgb(255, 255, 255);
     border-radius: 1rem;
+    color: rgb(133, 133, 133);
+    padding-left: 0.5rem;
   }
 `
 
@@ -106,6 +108,10 @@ const CreateTextArea = styled.div`
     outline: none;
     border-radius: 1rem;
     padding: 1rem;
+  }
+  textarea::placeholder {
+    font-family: sans-serif;
+    color: rgb(133, 133, 133);
   }
 `
 
