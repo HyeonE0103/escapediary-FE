@@ -10,7 +10,7 @@ const List = ({ title, content, date, star, onClick }) => {
       </ListLeft>
       <ListRight>
         <div className="ListDate">{date}</div>
-        <div className="ListStar">{star}</div>
+        <div className="ListStar">{"⭐".repeat(star)}</div>
       </ListRight>
     </ListContainer>
   );
