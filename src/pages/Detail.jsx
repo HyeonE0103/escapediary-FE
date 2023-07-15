@@ -1,26 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { styled } from "styled-components";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
+import axios from "axios";
 
 const Detail = () => {
   const { goBack } = useNavigation();
   const [user, setUser] = useState(false);
+  const [data, setData] = useState(null);
+  const postId = useParams();
+
+  useEffect(() => {
+    const api = async () => {
+      try {
+        const apiData = await axios.get("http://43.202.51.213/api/posts");
+        setData(apiData.data.posts);
+        console.log(apiData.data.posts);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    api();
+  }, []);
+
   return (
     <DetailWrap>
       <DetailContainer>
-        <DetailHeader>
-          <div className="backIcon" onClick={goBack}>
-            ←
-          </div>
-          {/* icon 처리 */}
-          <h1>방탈출 후기</h1>
-          <div className="detailStar">"⭐⭐⭐⭐⭐"</div>
-        </DetailHeader>
-        <DetailBody>
-          <div className="detailContent">푸히힛푸히힛</div>
-          <div className="detailDate">2023-07-14</div>
-        </DetailBody>
+        {data && data
+          .filter((item => item.postId == postId.postid))
+          .map((item) => {
+            return (
+              <>
+                <DetailHeader>
+                  <div className="backIcon" onClick={goBack}>
+                    ←
+                  </div>
+                  {/* icon 처리 */}
+                  <h1>{item.title}</h1>
+                  <div className="detailStar">{`${'⭐'.repeat(item.star)}`}</div>
+                </DetailHeader>
+                <DetailBody>
+                  <div className="detailContent">{item.content}</div>
+                  <div className="detailDate">{item.createdAt.slice(0, 10)}</div>
+                </DetailBody>
+              </>
+            )
+          })}
         {user && (
           <DetailBodyFooter>
             <Button color={"black"} size={"medium"}>
