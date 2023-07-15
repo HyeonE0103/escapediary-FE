@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState } from "react";
 import { styled } from "styled-components";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
 
 const Create = () => {
+  const { goToPath, goBack } = useNavigation();
+  const [review, setReview] = useState({ title: "", star: "0", content: "" });
 
-  const { goToPath } = useNavigation();
-  const starOptions = [];
-  for (let i = 0; i <= 5; i++) {
-    starOptions.push(<option key={i}>{i == 0 ? '별점을 선택해주세요.' : '⭐'.repeat(i)}</option>);
-  }
+  const onChangeHandler = (e) => {
+    setReview({
+      ...review,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onClickSubmit = (e) => {
+    if (
+      review.title.trim().length === 0 ||
+      review.content.trim().length === 0 ||
+      review.star === "0"
+    ) {
+      alert("모든 내용을 작성해주세요.");
+    } else if (
+      review.title.trim().length > 25 ||
+      review.content.trim().length > 200
+    ) {
+      alert("제목은 25자 이하, 본문은 200자 이하로 작성해주세요");
+      console.log(review.title.length);
+    } else {
+      goToPath("/");
+    }
+  };
 
   return (
     <CreateWrap>
@@ -17,29 +38,48 @@ const Create = () => {
         <h1>작성하기</h1>
         <CreateBody>
           <CreateInput>
-            <input type='text' placeholder='제목을 입력해주세요.' />
+            <input
+              onChange={onChangeHandler}
+              type="text"
+              placeholder="제목을 입력해주세요."
+              name="title"
+            />
           </CreateInput>
           <CreateSelect>
-            <select>
-              {starOptions}
+            <select onChange={onChangeHandler} name="star">
+              {Array(6)
+                .fill()
+                .map((_, index) => (
+                  <option key={index} value={index}>
+                    {index === 0 ? "별점을 선택해주세요." : "⭐".repeat(index)}
+                  </option>
+                ))}
             </select>
           </CreateSelect>
         </CreateBody>
         <CreateTextArea>
-          <textarea placeholder='내용을 입력해주세요.'></textarea>
+          <textarea
+            onChange={onChangeHandler}
+            placeholder="내용을 입력해주세요."
+            name="content"
+          ></textarea>
         </CreateTextArea>
         <CreateButton>
-          <Button onClick={() => goToPath("/")} color={"white"} size={"medium"}>목록</Button>
-          <Button color={"black"} size={"medium"}>작성</Button>
+          <Button onClick={goBack} color={"white"} size={"medium"}>
+            목록
+          </Button>
+          <Button onClick={onClickSubmit} color={"black"} size={"medium"}>
+            작성
+          </Button>
         </CreateButton>
       </CreateContainer>
     </CreateWrap>
-  )
-}
+  );
+};
 
 export default Create;
 
-const CreateWrap = styled.div`
+const CreateWrap = styled.form`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -64,7 +104,7 @@ const CreateContainer = styled.div`
     font-weight: bold;
     margin-top: 2rem;
   }
-`
+`;
 
 const CreateBody = styled.div`
   display: flex;
@@ -72,7 +112,7 @@ const CreateBody = styled.div`
   gap: 2rem;
   margin-top: 5rem;
   margin-bottom: 2rem;
-`
+`;
 
 const CreateInput = styled.div`
   width: 35rem;
@@ -85,8 +125,8 @@ const CreateInput = styled.div`
     border-radius: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-  } 
-`
+  }
+`;
 const CreateSelect = styled.div`
   width: 35rem;
   display: flex;
@@ -99,7 +139,7 @@ const CreateSelect = styled.div`
     color: rgb(133, 133, 133);
     padding-left: 0.5rem;
   }
-`
+`;
 
 const CreateTextArea = styled.div`
   width: 35rem;
@@ -116,7 +156,7 @@ const CreateTextArea = styled.div`
     font-family: sans-serif;
     color: rgb(133, 133, 133);
   }
-`
+`;
 
 const CreateButton = styled.div`
   display: flex;
