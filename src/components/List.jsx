@@ -18,7 +18,8 @@ const List = ({ title, content, date, star, onClick }) => {
 const ListContainer = styled.div`
   display: flex;
   width: 80%;
-  min-width: 350px;
+  min-width: 30rem;
+  height: 5rem;
   padding: 2rem 0 2rem 0;
   border-bottom: 1px solid black;
   position: relative;
@@ -28,12 +29,22 @@ const ListLeft = styled.div`
   flex: 3;
   display: flex;
   flex-direction: column;
+  margin-right: 3rem;
+  position: relative;
   h2 {
     font-size: 1.5rem;
     padding-bottom: 1rem;
   }
   div {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     color: #848484;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
 `;
 const ListRight = styled.div`
