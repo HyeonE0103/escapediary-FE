@@ -1,70 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/common/Button";
 import { styled } from "styled-components";
 import List from "../components/List";
 import useNavigation from "../hooks/useNavigation";
+import axios from "axios";
 
 const Main = () => {
   const { goToPath } = useNavigation();
   const [user, setUser] = useState(false);
-  const [dummy, setDummy] = useState([
-    {
-      id: 1,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 2,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 3,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 4,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 5,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 6,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 7,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-    {
-      id: 8,
-      title: "방탈출 후기!!",
-      content: "ㅁ나어리마;ㄴ어먀ㅐㅁㅊ렁ㄴ매ㅑ처ㅡ랴ㅡㄴ앰츠ㅕㅓㅑㅐㄴㅁ어",
-      date: "2023-07-14",
-      star: "⭐⭐⭐⭐⭐",
-    },
-  ]);
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const api = async () => {
+      try {
+        const apiData = await axios.get("http://43.202.51.213/api/posts");
+        setData(apiData.data.posts);
+        console.log(apiData.data.posts);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    api();
+  }, []);
   return (
     <WrapMain>
       <Header>
@@ -86,16 +42,17 @@ const Main = () => {
           </Button>
         </div>
         <div className="MainListSection">
-          {dummy.map((item, i) => (
-            <List
-              key={i}
-              title={item.title}
-              content={item.content}
-              date={item.date}
-              star={item.star}
-              onClick={() => goToPath("/detail/postId")}
-            />
-          ))}
+          {data &&
+            data.map((item) => (
+              <List
+                key={item.postId}
+                title={item.title}
+                content={item.content}
+                date={item.createdAt.slice(0, 10)}
+                star={item.star}
+                onClick={() => goToPath("/detail/postId")}
+              />
+            ))}
         </div>
       </MainBody>
     </WrapMain>
