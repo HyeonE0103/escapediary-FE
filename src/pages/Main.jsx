@@ -50,7 +50,7 @@ const Main = () => {
                 content={item.content}
                 date={item.createdAt.slice(0, 10)}
                 star={item.star}
-                onClick={() => goToPath("/detail/postId")}
+                onClick={() => goToPath(`/detail/${item.postId}`)}
               />
             ))}
         </div>
