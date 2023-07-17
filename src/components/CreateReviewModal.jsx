@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import Button from "../components/common/Button";
+import Button from "./common/Button";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
-import Input from "../components/common/Input";
+import Input from "./common/Input";
 
-const CreateReview = () => {
+const CreateReviewModal = () => {
   const { goToPath, goBack } = useNavigation();
   const [review, setReview] = useState({ title: "", star: "0", content: "" });
 
@@ -87,7 +87,7 @@ const CreateReview = () => {
   );
 };
 
-export default CreateReview;
+export default CreateReviewModal;
 
 const CreateWrap = styled.form`
   width: 100%;
