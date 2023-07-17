@@ -95,9 +95,10 @@ const DetailHeader = styled.div`
     cursor: pointer;
   }
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    word-break: break-all;
+    word-break: keep-all;
+    text-align: center;
   }
   .detailStar {
     padding-top: 1.5rem;

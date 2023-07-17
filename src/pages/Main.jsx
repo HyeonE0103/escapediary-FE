@@ -78,7 +78,7 @@ const Header = styled.div`
 `;
 const MainBody = styled.div`
   box-sizing: border-box;
-  padding: 2rem 4rem 8rem 4rem;
+  padding: ${window.innerWidth < 480 ? '2rem 1rem 8rem 1rem' : '2rem 3rem 8rem 3rem'};
   .MainButtonSection {
     display: flex;
     padding-bottom: 2rem;
