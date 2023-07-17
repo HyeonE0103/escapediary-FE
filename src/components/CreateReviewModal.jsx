@@ -5,7 +5,7 @@ import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Input from "./common/Input";
 
-const CreateReviewModal = () => {
+const CreateReviewModal = ( {openModalHandler} ) => {
   const { goToPath, goBack } = useNavigation();
   const [review, setReview] = useState({ title: "", star: "0", content: "" });
 
@@ -28,13 +28,14 @@ const CreateReviewModal = () => {
           star: review.star,
           content: review.content,
         })
-        .then((response) => goToPath("/"))
+        .then((response) => openModalHandler())
         .catch((error) => console.log(error));
     }
   };
 
   return (
     <CreateWrap onSubmit={onClickSubmit}>
+      <CreateDiv></CreateDiv>
       <CreateContainer>
         <h1>작성하기</h1>
         <CreateBody>
@@ -75,10 +76,10 @@ const CreateReviewModal = () => {
           ></textarea>
         </CreateTextArea>
         <CreateButton>
-          <Button onClick={() => goToPath("/")} color={"white"} size={"medium"}>
-            목록
+          <Button onClick={openModalHandler} color={"white"} size={"small"}>
+            닫기
           </Button>
-          <Button type="submit" color={"black"} size={"medium"}>
+          <Button type="submit" color={"black"} size={"small"}>
             작성
           </Button>
         </CreateButton>
@@ -97,18 +98,30 @@ const CreateWrap = styled.form`
   justify-content: center;
 `;
 
+const CreateDiv = styled.div`
+  width: 100%;
+  height: 100vh;
+  inset: 0px;
+  position: fixed;
+  opacity: 0.8;
+  background-color: rgb(221, 221, 221);
+`;
+
 const CreateContainer = styled.div`
-  width: 40rem;
-  height: 50rem;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  width: 80%;
+  height: 100%;
   margin: auto;
-  position: relative;
-  padding: 3rem;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #d8d8d8;
+  z-index: 1;
   @media (max-width: 480px) {
-    border: none;
     width: 100%;
     height: 100vh;
   }
@@ -118,59 +131,47 @@ const CreateContainer = styled.div`
     font-size: 2rem;
     font-weight: bold;
     margin-top: 2rem;
-    @media (max-width: 480px) {
-      margin-left: 6.1rem;
-    }
   }
 `;
 
 const CreateBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-top: 5rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-top: 4.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 const CreateInput = styled.div`
-  width: 35rem;
+  width: 70vw;
   display: flex;
-  @media (max-width: 480px) {
-    width: 25rem;
-    margin-left: 6.7rem;
-  }
+  margin: 0 auto;
 `;
 const CreateSelect = styled.div`
-  width: 35rem;
+  width: 70vw;
   display: flex;
-  @media (max-width: 480px) {
-    width: 25rem;
-    margin-left: 6.7rem;
-  }
+  margin: 0 auto;
   select {
     border: 1px solid rgb(221, 221, 221);
     height: 2.8rem;
     width: 100%;
     background-color: rgb(255, 255, 255);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     color: rgb(133, 133, 133);
     padding-left: 0.5rem;
   }
 `;
 
 const CreateTextArea = styled.div`
-  width: 35rem;
+  width: 70vw;
+  height: 50%;
   display: flex;
-  @media (max-width: 480px) {
-    width: 25rem;
-    margin-left: 6.7rem;
-  }
+  margin: 0 auto;
   textarea {
     border: 1px solid rgb(221, 221, 221);
-    height: 22rem;
     width: 100%;
     outline: none;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1rem;
   }
   textarea::placeholder {
@@ -182,9 +183,7 @@ const CreateTextArea = styled.div`
 const CreateButton = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
   gap: 1rem;
-  @media (max-width: 480px) {
-    margin-left: 6.5rem;
-  }
 `;
