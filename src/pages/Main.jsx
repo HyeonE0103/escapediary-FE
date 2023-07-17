@@ -4,23 +4,37 @@ import { styled } from "styled-components";
 import List from "../components/List";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
+import Pagenation from "../components/common/Pagenation";
 
 const Main = () => {
   const { goToPath } = useNavigation();
   const [user, setUser] = useState(false);
   const [data, setData] = useState(null);
+  const [posts, setPosts] = useState(null);
+
+  const [page, setPage] = useState(1);
+  const limit = 6;
+  const offset = (page - 1) * limit;
+
   useEffect(() => {
     const api = async () => {
       const api = process.env.REACT_APP_URL;
       try {
         const apiData = await axios.get(api);
-        setData(apiData.data.posts);
+        setData(apiData.data.posts.reverse());
+        setPosts(apiData.data.posts.slice(0, limit));
       } catch (e) {
         console.log(e);
       }
     };
     api();
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      setPosts(data.slice(offset, offset + limit));
+    }
+  }, [page]);
   return (
     <WrapMain>
       <Header>
@@ -42,8 +56,8 @@ const Main = () => {
           </Button>
         </div>
         <div className="MainListSection">
-          {data &&
-            data.map((item) => (
+          {posts &&
+            posts.map((item) => (
               <List
                 key={item.postId}
                 title={item.title}
@@ -55,6 +69,16 @@ const Main = () => {
             ))}
         </div>
       </MainBody>
+      <MainFooter>
+        {data && (
+          <Pagenation
+            limit={limit}
+            page={page}
+            totalPosts={data.length}
+            setPage={setPage}
+          />
+        )}
+      </MainFooter>
     </WrapMain>
   );
 };
@@ -78,9 +102,9 @@ const Header = styled.div`
 `;
 const MainBody = styled.div`
   box-sizing: border-box;
-  padding: 2rem 3rem 8rem 3rem;
+  padding: 2rem 3rem 5rem 3rem;
   @media (max-width: 480px) {
-    padding: 1rem 1rem 8rem 1rem;
+    padding: 1rem 1rem 2rem 1rem;
   }
   .MainButtonSection {
     display: flex;
@@ -98,5 +122,10 @@ const MainBody = styled.div`
     align-items: center;
     justify-content: center;
   }
+`;
+const MainFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export default Main;
