@@ -18,7 +18,7 @@ const List = ({ title, content, date, star, onClick }) => {
 const ListContainer = styled.div`
   display: flex;
   width: 80%;
-  min-width: 30rem;
+  /* min-width: 30rem; */
   height: 5rem;
   padding: 2rem 0 2rem 0;
   border-bottom: 1px solid black;
@@ -32,8 +32,16 @@ const ListLeft = styled.div`
   margin-right: 3rem;
   position: relative;
   h2 {
+    position: absolute;
+    width: 100%;
+    top: 0;
     font-size: 1.5rem;
     padding-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-wrap: break-word;
+    word-break: break-all;
   }
   div {
     position: absolute;
