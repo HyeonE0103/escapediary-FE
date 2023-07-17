@@ -54,9 +54,6 @@ const MainPage = () => {
             리뷰 쓰기
           </Button>
         </div>
-        {setOpenModal
-          ? openModal && <CreateReviewModal openModalHandler={openModalHandler} />
-          : null}
         <div className="MainListSection">
           {posts &&
             posts.map((item) => (
@@ -70,6 +67,9 @@ const MainPage = () => {
               />
             ))}
         </div>
+        {setOpenModal
+          ? openModal && <CreateReviewModal openModalHandler={openModalHandler} />
+          : null}
       </MainBody>
       <MainFooter>
         {data && (
