@@ -106,7 +106,10 @@ const CreateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* border: 1px solid #d8d8d8; */
+  border: 1px solid #d8d8d8;
+  @media (max-width: 480px) {
+    border: none;
+  }
   padding: 0 2rem;
   box-sizing: border-box;
   h1 {
