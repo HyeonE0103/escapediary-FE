@@ -97,7 +97,8 @@ const DetailHeader = styled.div`
   h1 {
     font-size: 2rem;
     font-weight: bold;
-    word-break: keep-all;
+    word-break: break-all;
+    overflow-wrap: break-word;
     text-align: center;
   }
   .detailStar {
@@ -115,6 +116,7 @@ const DetailBody = styled.div`
     border: 1px solid #d8d8d8;
     overflow: auto;
     word-break: break-all;
+    overflow-wrap: break-word;
   }
   .detailDate {
     padding: 1rem 0;
