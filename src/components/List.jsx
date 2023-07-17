@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 
 const List = ({ title, content, date, star, onClick }) => {
-
   // window.onresize = function(){
   //   document.location.reload();
   // };
@@ -23,12 +22,17 @@ const List = ({ title, content, date, star, onClick }) => {
 const ListContainer = styled.div`
   display: flex;
   width: 80%;
-  /* min-width: 30rem; */
   height: 5rem;
-  padding: 2rem 0 2rem 0;
+  padding: 2rem 0;
   border-bottom: 1px solid black;
   position: relative;
   cursor: pointer;
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 6rem;
+  }
 `;
 const ListLeft = styled.div`
   flex: 3;
@@ -40,7 +44,7 @@ const ListLeft = styled.div`
     position: absolute;
     width: 100%;
     top: 0;
-    font-size: ${window.innerWidth < 480 ? '1rem' : '1.5rem'};
+    font-size: 1.5rem;
     font-weight: bold;
     padding-bottom: 1rem;
     overflow: hidden;
@@ -48,6 +52,9 @@ const ListLeft = styled.div`
     white-space: nowrap;
     overflow-wrap: break-word;
     word-break: break-all;
+    @media (max-width: 480px) {
+      font-size: 1.2rem;
+    }
   }
   div {
     position: absolute;
@@ -59,6 +66,9 @@ const ListLeft = styled.div`
     white-space: nowrap;
     overflow-wrap: break-word;
     word-break: break-all;
+    @media (max-width: 480px) {
+      padding-top: 0.5rem;
+    }
   }
 `;
 const ListRight = styled.div`
@@ -70,12 +80,18 @@ const ListRight = styled.div`
     flex: 1;
     font-weight: bold;
     align-items: right;
+    @media (max-width: 480px) {
+      padding: 0.5rem 0;
+    }
   }
   .ListStar {
     flex: 1;
     position: absolute;
     bottom: 1rem;
     right: 0;
+    @media (max-width: 480px) {
+      position: static;
+    }
   }
 `;
 export default List;
