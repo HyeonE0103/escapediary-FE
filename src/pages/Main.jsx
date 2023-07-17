@@ -78,12 +78,18 @@ const Header = styled.div`
 `;
 const MainBody = styled.div`
   box-sizing: border-box;
-  padding: ${window.innerWidth < 480 ? '2rem 1rem 8rem 1rem' : '2rem 3rem 8rem 3rem'};
+  padding: 2rem 3rem 8rem 3rem;
+  @media (max-width: 480px) {
+    padding: 1rem 1rem 8rem 1rem;
+  }
   .MainButtonSection {
     display: flex;
     padding-bottom: 2rem;
     button {
       margin-left: auto;
+    }
+    @media (max-width: 480px) {
+      padding-bottom: 1rem;
     }
   }
   .MainListSection {

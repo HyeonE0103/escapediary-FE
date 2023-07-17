@@ -15,11 +15,11 @@ const Btn = styled.button`
   &:active {
     filter: brightness(95%);
   }
-  ${({ color }) => colorHandler(color)}
-  ${({ size }) => sizeHandler(size)}
+  ${({ color }) => buttonColorHandler(color)}
+  ${({ size }) => buttonSizeHandler(size)}
 `;
 
-const colorHandler = (color) => {
+const buttonColorHandler = (color) => {
   switch (color) {
     case "white":
       return `background-color: white; color: black;`;
@@ -30,12 +30,14 @@ const colorHandler = (color) => {
   }
 };
 
-const sizeHandler = (size) => {
+const buttonSizeHandler = (size) => {
   switch (size) {
     case "medium":
-      return `font-size: 1rem; width: 8rem; height: 3rem;`;
+      return `font-size: 1rem; width: 8rem; height: 3rem;
+      @media (max-width: 480px) {font-size:1rem; width:6rem; height:2.5rem};`;
     case "small":
-      return `font-size: 0.8rem; width: 6rem; height: 2.5rem;`;
+      return `font-size: 0.8rem; width: 6rem; height: 2.5rem;
+      @media (max-width: 480px) {font-size:0.8rem; width:4rem; height:2rem};`;
     default:
       return;
   }
