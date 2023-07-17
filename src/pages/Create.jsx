@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
+import Input from "../components/common/Input";
 
 const Create = () => {
   const { goToPath, goBack } = useNavigation();
@@ -38,11 +39,11 @@ const Create = () => {
         <h1>작성하기</h1>
         <CreateBody>
           <CreateInput>
-            <input
+            <Input
               required
               onChange={onChangeHandler}
               type="text"
-              placeholder="제목을 입력해주세요."
+              placeHolderText="제목을 입력해주세요."
               name="title"
               value={review.value}
             />
@@ -105,13 +106,16 @@ const CreateContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #d8d8d8;
+  /* border: 1px solid #d8d8d8; */
   padding: 0 2rem;
   box-sizing: border-box;
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-top: 2rem;
+    @media (max-width: 480px) {
+      margin-left: 6.1rem;
+    }
   }
 `;
 
@@ -126,19 +130,18 @@ const CreateBody = styled.div`
 const CreateInput = styled.div`
   width: 35rem;
   display: flex;
-  input {
-    border: 1px solid rgb(221, 221, 221);
-    height: 2.8rem;
-    width: 100%;
-    outline: none;
-    border-radius: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  @media (max-width: 480px) {
+    width: 25rem;
+    margin-left: 6.7rem;
   }
 `;
 const CreateSelect = styled.div`
   width: 35rem;
   display: flex;
+  @media (max-width: 480px) {
+    width: 25rem;
+    margin-left: 6.7rem;
+  }
   select {
     border: 1px solid rgb(221, 221, 221);
     height: 2.8rem;
@@ -153,6 +156,10 @@ const CreateSelect = styled.div`
 const CreateTextArea = styled.div`
   width: 35rem;
   display: flex;
+  @media (max-width: 480px) {
+    width: 25rem;
+    margin-left: 6.7rem;
+  }
   textarea {
     border: 1px solid rgb(221, 221, 221);
     height: 22rem;
@@ -171,5 +178,8 @@ const CreateButton = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-  gap: 19rem;
+  gap: 1rem;
+  @media (max-width: 480px) {
+    margin-left: 6.5rem;
+  }
 `;
