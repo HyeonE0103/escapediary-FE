@@ -2,10 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 
 const List = ({ title, content, date, star, onClick }) => {
-  // window.onresize = function(){
-  //   document.location.reload();
-  // };
-
   return (
     <ListContainer onClick={onClick}>
       <ListLeft>
