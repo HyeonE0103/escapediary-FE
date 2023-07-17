@@ -91,11 +91,7 @@ const CreateReviewModal = ( {openModalHandler} ) => {
 export default CreateReviewModal;
 
 const CreateWrap = styled.form`
-  width: 100%;
-  height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const CreateDiv = styled.div`
@@ -113,20 +109,16 @@ const CreateContainer = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
   background-color: rgb(255, 255, 255);
-  width: 80%;
-  height: 100%;
+  width: 70%;
+  height: 100vh;
   margin: auto;
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
-  @media (max-width: 480px) {
-    width: 100%;
-    height: 100vh;
-  }
   padding: 0 2rem;
   box-sizing: border-box;
+  max-width: 50rem;
   h1 {
     font-size: 2rem;
     font-weight: bold;
@@ -143,12 +135,12 @@ const CreateBody = styled.div`
 `;
 
 const CreateInput = styled.div`
-  width: 70vw;
+  width: 48vw;
   display: flex;
   margin: 0 auto;
 `;
 const CreateSelect = styled.div`
-  width: 70vw;
+  width: 48vw;
   display: flex;
   margin: 0 auto;
   select {
@@ -163,7 +155,7 @@ const CreateSelect = styled.div`
 `;
 
 const CreateTextArea = styled.div`
-  width: 70vw;
+  width: 48vw;
   height: 50%;
   display: flex;
   margin: 0 auto;
