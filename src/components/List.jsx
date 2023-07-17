@@ -2,6 +2,11 @@ import React from "react";
 import { styled } from "styled-components";
 
 const List = ({ title, content, date, star, onClick }) => {
+
+  // window.onresize = function(){
+  //   document.location.reload();
+  // };
+
   return (
     <ListContainer onClick={onClick}>
       <ListLeft>
@@ -35,7 +40,8 @@ const ListLeft = styled.div`
     position: absolute;
     width: 100%;
     top: 0;
-    font-size: 1.5rem;
+    font-size: ${window.innerWidth < 480 ? '1rem' : '1.5rem'};
+    font-weight: bold;
     padding-bottom: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
