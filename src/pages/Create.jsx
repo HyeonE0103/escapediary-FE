@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { styled } from "styled-components";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
+import axios from "axios";
 
 const Create = () => {
   const { goToPath, goBack } = useNavigation();
@@ -15,42 +16,48 @@ const Create = () => {
   };
 
   const onClickSubmit = (e) => {
-    if (
-      review.title.trim().length === 0 ||
-      review.content.trim().length === 0 ||
-      review.star === "0"
-    ) {
-      alert("모든 내용을 작성해주세요.");
-    } else if (
-      review.title.trim().length > 25 ||
-      review.content.trim().length > 200
-    ) {
+    e.preventDefault();
+    if (review.title.trim().length > 25 || review.content.trim().length > 200) {
       alert("제목은 25자 이하, 본문은 200자 이하로 작성해주세요");
-      console.log(review.title.length);
     } else {
-      goToPath("/");
+      const api = process.env.REACT_APP_URL;
+      axios
+        .post(api, {
+          title: review.title,
+          star: review.star,
+          content: review.content,
+        })
+        .then((response) => goToPath("/"))
+        .catch((error) => console.log(error));
     }
   };
 
   return (
-    <CreateWrap>
+    <CreateWrap onSubmit={onClickSubmit}>
       <CreateContainer>
         <h1>작성하기</h1>
         <CreateBody>
           <CreateInput>
             <input
+              required
               onChange={onChangeHandler}
               type="text"
               placeholder="제목을 입력해주세요."
               name="title"
+              value={review.value}
             />
           </CreateInput>
           <CreateSelect>
-            <select onChange={onChangeHandler} name="star">
+            <select
+              onChange={onChangeHandler}
+              name="star"
+              value={review.star}
+              required
+            >
               {Array(6)
                 .fill()
                 .map((_, index) => (
-                  <option key={index} value={index}>
+                  <option key={index} value={index === 0 ? "" : index}>
                     {index === 0 ? "별점을 선택해주세요." : "⭐".repeat(index)}
                   </option>
                 ))}
@@ -62,13 +69,15 @@ const Create = () => {
             onChange={onChangeHandler}
             placeholder="내용을 입력해주세요."
             name="content"
+            value={review.content}
+            required
           ></textarea>
         </CreateTextArea>
         <CreateButton>
-          <Button onClick={goBack} color={"white"} size={"medium"}>
+          <Button onClick={() => goToPath("/")} color={"white"} size={"medium"}>
             목록
           </Button>
-          <Button onClick={onClickSubmit} color={"black"} size={"medium"}>
+          <Button type="submit" color={"black"} size={"medium"}>
             작성
           </Button>
         </CreateButton>
