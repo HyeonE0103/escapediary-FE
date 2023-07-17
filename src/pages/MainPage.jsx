@@ -5,10 +5,10 @@ import List from "../components/MainList";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Pagenation from "../components/common/Pagenation";
+import Header from "../components/common/Header";
 
 const MainPage = () => {
   const { goToPath } = useNavigation();
-  const [user, setUser] = useState(false);
   const [data, setData] = useState(null);
   const [posts, setPosts] = useState(null);
 
@@ -37,14 +37,7 @@ const MainPage = () => {
   }, [page]);
   return (
     <WrapMain>
-      <Header>
-        <p>EscapeDiary</p>
-        {user && (
-          <Button color={"white"} size={"small"}>
-            로그아웃
-          </Button>
-        )}
-      </Header>
+      <Header/>
       <MainBody>
         <div className="MainButtonSection">
           <Button
@@ -85,20 +78,6 @@ const MainPage = () => {
 const WrapMain = styled.div`
   width: 100%;
   height: 100vh;
-`;
-const Header = styled.div`
-  background-color: rgba(0, 0, 0, 0.8);
-  height: 5rem;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  p {
-    font-size: 2.5rem;
-    color: white;
-    font-weight: bold;
-  }
 `;
 const MainBody = styled.div`
   box-sizing: border-box;
