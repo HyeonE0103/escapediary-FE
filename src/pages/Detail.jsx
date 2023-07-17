@@ -13,8 +13,9 @@ const Detail = () => {
 
   useEffect(() => {
     const api = async () => {
+      const api = process.env.REACT_APP_URL;
       try {
-        const apiData = await axios.get("http://43.202.51.213/api/posts");
+        const apiData = await axios.get(api);
         setData(apiData.data.posts);
         console.log(apiData.data.posts);
       } catch (e) {
