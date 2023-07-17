@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Button from "../components/common/Button";
 import { styled } from "styled-components";
-import List from "../components/List";
+import List from "../components/MainList";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Pagenation from "../components/common/Pagenation";
 
-const Main = () => {
+const MainPage = () => {
   const { goToPath } = useNavigation();
   const [user, setUser] = useState(false);
   const [data, setData] = useState(null);
@@ -128,4 +128,4 @@ const MainFooter = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export default Main;
+export default MainPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const List = ({ title, content, date, star, onClick }) => {
+const MainList = ({ title, content, date, star, onClick }) => {
   return (
     <ListContainer onClick={onClick}>
       <ListLeft>
@@ -90,4 +90,4 @@ const ListRight = styled.div`
     }
   }
 `;
-export default List;
+export default MainList;

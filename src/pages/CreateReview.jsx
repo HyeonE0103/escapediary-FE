@@ -5,7 +5,7 @@ import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Input from "../components/common/Input";
 
-const Create = () => {
+const CreateReview = () => {
   const { goToPath, goBack } = useNavigation();
   const [review, setReview] = useState({ title: "", star: "0", content: "" });
 
@@ -87,7 +87,7 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateReview;
 
 const CreateWrap = styled.form`
   width: 100%;
@@ -109,6 +109,8 @@ const CreateContainer = styled.div`
   border: 1px solid #d8d8d8;
   @media (max-width: 480px) {
     border: none;
+    width: 100%;
+    height: 100vh;
   }
   padding: 0 2rem;
   box-sizing: border-box;

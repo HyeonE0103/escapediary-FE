@@ -5,7 +5,7 @@ import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 
-const Detail = () => {
+const DetailReview = () => {
   const { goBack } = useNavigation();
   const [user, setUser] = useState(false);
   const [data, setData] = useState(null);
@@ -130,4 +130,4 @@ const DetailBodyFooter = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-export default Detail;
+export default DetailReview;
