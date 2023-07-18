@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 import Button from "./common/Button";
-import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Input from "./common/Input";
 
-const CreateReviewModal = ( {openModalHandler} ) => {
-  const { goToPath, goBack } = useNavigation();
-  const [review, setReview] = useState({ title: "", star: "0", content: "" });
+const CreateReviewModal = ({ openModalHandler }) => {
+  const [review, setReview] = useState({ title: "", roomname: "", star: "0", content: "" });
 
   const onChangeHandler = (e) => {
     setReview({
@@ -25,10 +23,12 @@ const CreateReviewModal = ( {openModalHandler} ) => {
       axios
         .post(api, {
           title: review.title,
+          roomname: review.roomname,
           star: review.star,
           content: review.content,
         })
-        .then((response) => openModalHandler())
+        // eslint-disable-next-line no-restricted-globals
+        .then((response) => location.reload())
         .catch((error) => console.log(error));
     }
   };
@@ -46,6 +46,16 @@ const CreateReviewModal = ( {openModalHandler} ) => {
               type="text"
               placeHolderText="제목을 입력해주세요."
               name="title"
+              value={review.value}
+            />
+          </CreateInput>
+          <CreateInput>
+            <Input
+              required
+              onChange={onChangeHandler}
+              type="text"
+              placeHolderText="방탈출 테마를 입력해주세요."
+              name="roomname"
               value={review.value}
             />
           </CreateInput>
@@ -110,7 +120,7 @@ const CreateContainer = styled.div`
   border-radius: 0.5rem;
   background-color: rgb(255, 255, 255);
   width: 60%;
-  height: 80%;
+  height: 90%;
   @media (min-width:768px) and (max-width:1023px) {
     height: 60%;
   }
@@ -165,7 +175,10 @@ const CreateSelect = styled.div`
 
 const CreateTextArea = styled.div`
   width: 48vw;
-  height: 45%;
+  height: 40%;
+  @media (max-width: 480px) {
+    height: 30%;
+  }
   display: flex;
   margin: 0 auto;
   textarea {
