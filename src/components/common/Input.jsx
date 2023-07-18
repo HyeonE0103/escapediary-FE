@@ -6,6 +6,7 @@ const Input = ({ labelText, placeHolderText, name, value, onChange }) => {
     <InputWrap>
       <label>{labelText}</label>
       <input
+        required
         placeholder={placeHolderText}
         name={name}
         value={value}
