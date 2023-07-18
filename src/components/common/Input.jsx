@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const Input = ({ labelText, placeHolderText, name, value, onChange }) => {
+const Input = ({ labelText, placeHolderText, name, value, onChange, type }) => {
   return (
     <InputWrap>
       <label>{labelText}</label>
@@ -11,6 +11,7 @@ const Input = ({ labelText, placeHolderText, name, value, onChange }) => {
         name={name}
         value={value}
         onChange={onChange}
+        type={type}
       />
     </InputWrap>
   );
