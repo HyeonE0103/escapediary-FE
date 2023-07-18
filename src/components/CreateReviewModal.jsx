@@ -16,8 +16,8 @@ const CreateReviewModal = ({ openModalHandler }) => {
 
   const onClickSubmit = (e) => {
     e.preventDefault();
-    if (review.title.trim().length > 25 || review.content.trim().length > 200) {
-      alert("제목은 25자 이하, 본문은 200자 이하로 작성해주세요");
+    if (review.title.trim().length > 25 || review.roomname.trim().length > 25 || review.content.trim().length > 500) {
+      alert("제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요.");
     } else {
       const api = process.env.REACT_APP_URL;
       axios
