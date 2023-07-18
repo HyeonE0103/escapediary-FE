@@ -105,12 +105,19 @@ const CreateDiv = styled.div`
 
 const CreateContainer = styled.div`
   left: 50%;
-  top: 60%;
+  top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
   background-color: rgb(255, 255, 255);
-  width: 70%;
-  height: 100vh;
+  width: 60%;
+  height: 80%;
+  @media (min-width:768px) and (max-width:1023px) {
+    height: 60%;
+  }
+  @media (max-width: 480px) {
+    width: 70%;
+    height: 70%;
+  }
   margin: auto;
   position: absolute;
   display: flex;
@@ -120,6 +127,9 @@ const CreateContainer = styled.div`
   box-sizing: border-box;
   h1 {
     font-size: 2rem;
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
     font-weight: bold;
     margin-top: 2rem;
   }
@@ -128,9 +138,9 @@ const CreateContainer = styled.div`
 const CreateBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 4.5rem;
-  margin-bottom: 1.5rem;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
 `;
 
 const CreateInput = styled.div`
@@ -155,7 +165,7 @@ const CreateSelect = styled.div`
 
 const CreateTextArea = styled.div`
   width: 48vw;
-  height: 50%;
+  height: 45%;
   display: flex;
   margin: 0 auto;
   textarea {
