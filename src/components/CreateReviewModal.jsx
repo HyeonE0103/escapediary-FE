@@ -118,7 +118,6 @@ const CreateContainer = styled.div`
   align-items: center;
   padding: 0 2rem;
   box-sizing: border-box;
-  max-width: 50rem;
   h1 {
     font-size: 2rem;
     font-weight: bold;
