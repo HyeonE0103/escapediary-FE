@@ -44,6 +44,11 @@ const LoginContainer = styled.div`
   border: 1px solid #d8d8d8;
   padding: 0 2rem;
   box-sizing: border-box;
+  box-shadow: 1rem 1rem;
+  @media (max-width: 480px) {
+    box-shadow: none;
+    border: none;
+  }
 `;
 const LoginHeader = styled.div`
   flex: 1;
