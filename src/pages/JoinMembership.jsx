@@ -6,7 +6,7 @@ import axios from "axios";
 import useNavigation from "../hooks/useNavigation";
 
 const JoinMembership = () => {
-  const [join, setJoin] = useState({ id: "", password: "", confirm: "" })
+  const [join, setJoin] = useState({ id: "", password: "", confirm: "" });
   const { goToPath } = useNavigation();
 
   const onChangeHandler = (e) => {
@@ -15,17 +15,21 @@ const JoinMembership = () => {
 
   const onClickSubmit = (e) => {
     e.preventDefault();
-    if (!/^[a-z0-9+]{4,6}$/.test(join.id)) {
-      alert("아이디는 4자 이상 6자 이하의 영문 소문자, 숫자만 입력 가능합니다.");
-    }
-    else if (!/^[a-z0-9+]{10,16}$/.test(join.password)) {
-      alert("비밀번호는 10자 이상 16자 이하의 영문 소문자, 숫자만 입력 가능합니다.");
-    }
-    else if (join.password.trim() !== join.confirm.trim()) {
+    if (!/^[a-z0-9+]{5,15}$/.test(join.id)) {
+      alert(
+        "아이디는 5자 이상 15자 이하의 영문 소문자, 숫자만 입력 가능합니다."
+      );
+    } else if (!/^[a-z0-9+]{6,12}$/.test(join.password)) {
+      alert(
+        "비밀번호는 10자 이상 16자 이하의 영문 소문자, 숫자만 입력 가능합니다."
+      );
+    } else if (join.password.trim() !== join.confirm.trim()) {
       alert("비밀번호를 다시 확인해주세요.");
-    }
-    else {
-      const api = process.env.REACT_APP_URL;
+    } else {
+      console.log("id", join.id, typeof join.id);
+      console.log("password", join.password, typeof join.password);
+      console.log("confirm", join.confirm, typeof join.confirm);
+      const api = process.env.REACT_APP_URL + "signup";
       axios
         .post(api, {
           id: join.id,
@@ -53,7 +57,9 @@ const JoinMembership = () => {
               value={join.id}
               onChange={onChangeHandler}
             />
-            <p>아이디는 4자 이상 6자 이하의 영문 소문자, 숫자만 입력 가능합니다.</p>
+            <p>
+              아이디는 4자 이상 6자 이하의 영문 소문자, 숫자만 입력 가능합니다.
+            </p>
           </div>
           <div>
             <Input
@@ -64,10 +70,14 @@ const JoinMembership = () => {
               value={join.password}
               onChange={onChangeHandler}
             />
-            <p>비밀번호는 10자 이상 16자 이하의 영문 소문자, 숫자만 입력 가능합니다.</p>
+            <p>
+              비밀번호는 10자 이상 16자 이하의 영문 소문자, 숫자만 입력
+              가능합니다.
+            </p>
           </div>
           <div>
-            <Input labelText="Password Confirm"
+            <Input
+              labelText="Password Confirm"
               required
               type="password"
               name="confirm"

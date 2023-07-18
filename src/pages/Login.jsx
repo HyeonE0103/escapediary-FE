@@ -3,6 +3,7 @@ import Button from "../components/common/Button";
 import { styled } from "styled-components";
 import Input from "../components/common/Input";
 import useNavigation from "../hooks/useNavigation";
+import axios from "axios";
 
 const Login = () => {
   const [login, setLogin] = useState({ id: "", password: "" });
@@ -13,6 +14,12 @@ const Login = () => {
   };
   const onClickSumbit = (e) => {
     e.preventDefault();
+    const api = process.env.REACT_APP_URL + "login";
+    axios
+      .post(api, { id: login.id, password: login.password })
+      .then((response) => console.log(response.data))
+      // goToPath("/"))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -32,7 +39,7 @@ const Login = () => {
             />
             <Input
               labelText="password"
-              type="text"
+              type="password"
               name="password"
               value={login.password}
               onChange={onChangeHandler}
@@ -42,7 +49,7 @@ const Login = () => {
         </LoginBody>
         <LoginFooter>
           <Button color="black" size="medium" type="submit">
-            Sign In
+            Login
           </Button>
         </LoginFooter>
       </LoginContainer>

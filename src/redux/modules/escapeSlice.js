@@ -1,17 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  userData: null,
+  isLoading: false,
+  error: null,
+};
 
-export const __readEscape = createAsyncThunk(
-  "ADD_ESCAPE",
-  (payload, thunkAPI) => {}
-);
+export const __readEscape =
+  createAsyncThunk();
+  // "ADD_ESCAPE",
+  // (payload, thunkAPI) => {}
 
-const escapeSlice = createSlice({
-  name: "escape",
+const userSlice = createSlice({
+  name: "user",
   initialState,
   reducers: {},
 });
 
-export const {} = escapeSlice.actions;
-export default escapeSlice.reducer;
+export const {} = userSlice.actions;
+export default userSlice.reducer;

@@ -5,7 +5,12 @@ import axios from "axios";
 import Input from "./common/Input";
 
 const CreateReviewModal = ({ openModalHandler }) => {
-  const [review, setReview] = useState({ title: "", roomname: "", star: "0", content: "" });
+  const [review, setReview] = useState({
+    title: "",
+    roomname: "",
+    star: "0",
+    content: "",
+  });
 
   const onChangeHandler = (e) => {
     setReview({
@@ -16,10 +21,16 @@ const CreateReviewModal = ({ openModalHandler }) => {
 
   const onClickSubmit = (e) => {
     e.preventDefault();
-    if (review.title.trim().length > 25 || review.roomname.trim().length > 25 || review.content.trim().length > 500) {
-      alert("제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요.");
+    if (
+      review.title.trim().length > 25 ||
+      review.roomname.trim().length > 25 ||
+      review.content.trim().length > 500
+    ) {
+      alert(
+        "제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요."
+      );
     } else {
-      const api = process.env.REACT_APP_URL;
+      const api = process.env.REACT_APP_URL + "posts";
       axios
         .post(api, {
           title: review.title,
@@ -121,7 +132,7 @@ const CreateContainer = styled.div`
   background-color: rgb(255, 255, 255);
   width: 60%;
   height: 90%;
-  @media (min-width:768px) and (max-width:1023px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     height: 60%;
   }
   @media (max-width: 480px) {

@@ -24,7 +24,7 @@ const MainPage = () => {
 
   useEffect(() => {
     const api = async () => {
-      const api = process.env.REACT_APP_URL;
+      const api = process.env.REACT_APP_URL + "posts"
       try {
         const apiData = await axios.get(api);
         setData(apiData.data.posts.reverse());
@@ -43,14 +43,10 @@ const MainPage = () => {
   }, [page]);
   return (
     <WrapMain>
-      <Header/>
+      <Header />
       <MainBody>
         <div className="MainButtonSection">
-          <Button
-            color={"black"}
-            size={"medium"}
-            onClick={openModalHandler}
-          >
+          <Button color={"black"} size={"medium"} onClick={openModalHandler}>
             리뷰 쓰기
           </Button>
         </div>
@@ -68,7 +64,9 @@ const MainPage = () => {
             ))}
         </div>
         {setOpenModal
-          ? openModal && <CreateReviewModal openModalHandler={openModalHandler} />
+          ? openModal && (
+              <CreateReviewModal openModalHandler={openModalHandler} />
+            )
           : null}
       </MainBody>
       <MainFooter>
