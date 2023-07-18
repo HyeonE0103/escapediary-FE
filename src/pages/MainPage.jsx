@@ -6,6 +6,7 @@ import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Pagenation from "../components/common/Pagenation";
 import Header from "../components/common/Header";
+import CreateReviewModal from "../components/CreateReviewModal";
 
 const MainPage = () => {
   const { goToPath } = useNavigation();
@@ -15,6 +16,11 @@ const MainPage = () => {
   const [page, setPage] = useState(1);
   const limit = 6;
   const offset = (page - 1) * limit;
+
+  const [openModal, setOpenModal] = useState(false);
+  const openModalHandler = () => {
+    setOpenModal(!openModal);
+  };
 
   useEffect(() => {
     const api = async () => {
@@ -43,7 +49,7 @@ const MainPage = () => {
           <Button
             color={"black"}
             size={"medium"}
-            onClick={() => goToPath("/create")}
+            onClick={openModalHandler}
           >
             리뷰 쓰기
           </Button>
@@ -61,6 +67,9 @@ const MainPage = () => {
               />
             ))}
         </div>
+        {setOpenModal
+          ? openModal && <CreateReviewModal openModalHandler={openModalHandler} />
+          : null}
       </MainBody>
       <MainFooter>
         {data && (
