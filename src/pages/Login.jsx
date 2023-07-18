@@ -1,24 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/common/Button";
 import { styled } from "styled-components";
 import Input from "../components/common/Input";
+import useNavigation from "../hooks/useNavigation";
 
 const Login = () => {
+  const [login, setLogin] = useState({ id: "", password: "" });
+  const { goToPath } = useNavigation();
+
+  const onChangeHandler = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+  const onClickSumbit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <LoginWrap>
+    <LoginWrap onSubmit={onClickSumbit}>
       <LoginContainer>
         <LoginHeader>
           <h1>Login</h1>
         </LoginHeader>
         <LoginBody>
           <div className="inputSection">
-            <Input labelText="id" />
-            <Input labelText="password" />
+            <Input
+              labelText="id"
+              type="text"
+              name="id"
+              value={login.id}
+              onChange={onChangeHandler}
+            />
+            <Input
+              labelText="password"
+              type="text"
+              name="password"
+              value={login.password}
+              onChange={onChangeHandler}
+            />
           </div>
-          <p>join membership</p>
+          <p onClick={() => goToPath("/join-membership")}>join membership</p>
         </LoginBody>
         <LoginFooter>
-          <Button color="black" size="medium">
+          <Button color="black" size="medium" type="submit">
             Sign In
           </Button>
         </LoginFooter>
@@ -26,7 +49,7 @@ const Login = () => {
     </LoginWrap>
   );
 };
-const LoginWrap = styled.div`
+const LoginWrap = styled.form`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -76,6 +99,7 @@ const LoginBody = styled.div`
   p {
     margin-left: auto;
     color: #848484;
+    cursor: pointer;
   }
 `;
 const LoginFooter = styled.div`
