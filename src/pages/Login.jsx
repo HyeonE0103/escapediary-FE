@@ -15,6 +15,7 @@ const Login = () => {
   const onClickSumbit = (e) => {
     e.preventDefault();
     const api = process.env.REACT_APP_URL + "login";
+    console.log(process.env.REACT_APP_URL);
     axios
       .post(
         api,
