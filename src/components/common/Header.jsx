@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import Button from "./Button";
 import { styled } from "styled-components";
 import useNavigation from "../../hooks/useNavigation";
+import { useSelector } from "react-redux";
 
 const Header = ({ buttonShow }) => {
-  const [user, setUser] = useState(false);
+  const userData = useSelector((state) => state.userData);
   const { goToPath } = useNavigation();
   return (
     <HeaderWrap>
       <p onClick={() => goToPath("/")}>EscapeDiary</p>
-      {buttonShow === "loginUser" ? (
+      {userData ? (
         <Button color={"white"} size={"small"}>
           로그아웃
         </Button>
-      ) : buttonShow === "login" ? null : (
+      ) : (
         <Button
           color={"white"}
           size={"small"}
@@ -29,10 +30,10 @@ const HeaderWrap = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   height: 5rem;
   padding: 0 2rem;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  display: ${(props) => (props.buttonShow ? "none" : "flex")};
   @media (max-width: 480px) {
     display: none;
   }
