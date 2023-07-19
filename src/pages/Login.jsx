@@ -33,7 +33,6 @@ const Login = () => {
   };
   const onClickUserShow = async () => {
     try {
-      console.log("유저데이터 조회 시작");
       const api = process.env.REACT_APP_URL + "user";
       const response = await axios.get(api, { withCredentials: true });
       console.log("로그인시 유저 데이터", response.data);

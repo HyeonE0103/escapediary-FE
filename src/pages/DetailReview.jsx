@@ -19,7 +19,7 @@ const DetailReview = () => {
       const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
       try {
         const apiData = await axios.get(url);
-        const postData = apiData.data;
+        const postData = apiData.data["data"];
         setData(postData);
       } catch (e) {
         console.log(e);
@@ -27,8 +27,6 @@ const DetailReview = () => {
     };
     api();
   }, []);
-  console.log(data);
-  console.log(data.data);
   return (
     <DetailWrap>
       <Header />
@@ -41,7 +39,7 @@ const DetailReview = () => {
             <div className="informationContent">
               <div>{data.id}</div>
               <div>{"⭐".repeat(data.star)}</div>
-              <div>{data.createdAt}</div>
+              <div>{data.createdAt.slice(0, 10)}</div>
             </div>
             {user === data.id && (
               <div className="userButton">
@@ -137,6 +135,7 @@ const ContentSection = styled.div`
   .contentTitle {
     flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #1c1c1c;
