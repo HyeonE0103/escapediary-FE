@@ -32,12 +32,16 @@ const CreateReviewModal = ({ openModalHandler }) => {
     } else {
       const api = process.env.REACT_APP_URL + "posts";
       axios
-        .post(api, {
-          title: review.title,
-          roomname: review.roomname,
-          star: review.star,
-          content: review.content,
-        })
+        .post(
+          api,
+          {
+            title: review.title,
+            roomname: review.roomname,
+            star: review.star,
+            content: review.content,
+          },
+          { withCredentials: true }
+        )
         // eslint-disable-next-line no-restricted-globals
         .then((response) => location.reload())
         .catch((error) => console.log(error));
