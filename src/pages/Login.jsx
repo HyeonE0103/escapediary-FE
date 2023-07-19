@@ -15,14 +15,14 @@ const Login = () => {
   const onClickSumbit = (e) => {
     e.preventDefault();
     const api = process.env.REACT_APP_URL + "login";
-    console.log(process.env.REACT_APP_URL);
+    console.log("주소", process.env.REACT_APP_URL);
     axios
       .post(
         api,
         { id: login.id, password: login.password },
         { withCredentials: true }
       )
-      .then((response) => console.log(response.data))
+      .then((response) => console.log("data", response))
       // goToPath("/"))
       .catch((error) => console.log(error));
   };
