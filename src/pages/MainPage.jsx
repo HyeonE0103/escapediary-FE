@@ -7,6 +7,7 @@ import axios from "axios";
 import Pagenation from "../components/common/Pagenation";
 import Header from "../components/common/Header";
 import CreateReviewModal from "../components/CreateReviewModal";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
   const { goToPath } = useNavigation();
@@ -15,6 +16,8 @@ const MainPage = () => {
   const [page, setPage] = useState(1);
   const limit = 6;
   const offset = (page - 1) * limit;
+  const userData = useSelector((state) => state.userData);
+  console.log(userData);
 
   const [openModal, setOpenModal] = useState(false);
   const openModalHandler = () => {
