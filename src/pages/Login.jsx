@@ -6,7 +6,7 @@ import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Header from "../components/common/Header";
 import { useDispatch } from "react-redux";
-import { getuserData } from "../redux/modules/userSlice";
+import { getUserData } from "../redux/modules/userSlice";
 
 const Login = () => {
   const [login, setLogin] = useState({ id: "", password: "" });
@@ -37,7 +37,7 @@ const Login = () => {
       const api = process.env.REACT_APP_URL + "user";
       const response = await axios.get(api, { withCredentials: true });
       console.log("로그인시 유저 데이터", response.data); //유저조회 확인
-      dispatch(getuserData(response.data));
+      dispatch(getUserData(response.data));
     } catch (error) {
       console.error("유저 조회 실패:", error);
     }

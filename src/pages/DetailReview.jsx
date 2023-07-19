@@ -18,6 +18,7 @@ const DetailReview = () => {
       const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
       try {
         const apiData = await axios.get(url);
+        console.log(apiData.data);
         const postData = apiData.data["data"];
         setData(postData);
       } catch (e) {

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Button from "./Button";
 import { styled } from "styled-components";
 import useNavigation from "../../hooks/useNavigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { deleteUserData } from "../../redux/modules/userSlice";
 
 const Header = ({ buttonShow }) => {
   const userData = useSelector((state) => state.userData);
   const { goToPath } = useNavigation();
+  const dispatch = useDispatch();
 
   console.log("헤더 유저 데이터", userData);
 
@@ -17,6 +19,7 @@ const Header = ({ buttonShow }) => {
       .post(api)
       .then((res) => {
         console.log(res.data);
+        dispatch(deleteUserData());
       })
       .catch((err) => {
         console.log(err);
