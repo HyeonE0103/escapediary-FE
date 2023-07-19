@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import Button from "./common/Button";
 import axios from "axios";
 import Input from "./common/Input";
+import { useParams } from "react-router-dom";
 
 const CreateReviewModal = ({ openModalHandler }) => {
   const [review, setReview] = useState({
@@ -47,6 +48,24 @@ const CreateReviewModal = ({ openModalHandler }) => {
         .catch((error) => console.log(error));
     }
   };
+
+  const [data, setData] = useState(null);
+  const postId = useParams();
+  useEffect(() => {
+    const api = async () => {
+      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
+      try {
+        const apiData = await axios.get(url);
+        console.log(apiData.data);
+        const postData = apiData.data["post"];
+        setData(postData);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    api();
+  }, []);
+  console.log("모달 데이터", data);
 
   return (
     <CreateWrap onSubmit={onClickSubmit}>
