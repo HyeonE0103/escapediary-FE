@@ -28,7 +28,7 @@ const DetailReview = () => {
     api();
   }, []);
   console.log("상세 post 조회", data);
-  console.log("상세 user id 조회", user.id);
+  user !== null && console.log("상세 user id 조회", user.id);
   return (
     <DetailWrap>
       <Header />
@@ -43,7 +43,7 @@ const DetailReview = () => {
               <div>{"⭐".repeat(data.star)}</div>
               <div>{data.createdAt.slice(0, 10)}</div>
             </div>
-            {user === data.id && (
+            {user !== null && user.id === data.id && (
               <div className="userButton">
                 <Button color={"white"} size={"small"}>
                   수정
