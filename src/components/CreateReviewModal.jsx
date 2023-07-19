@@ -56,7 +56,6 @@ const CreateReviewModal = ({ openModalHandler }) => {
       const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
       try {
         const apiData = await axios.get(url);
-        console.log(apiData.data);
         const postData = apiData.data["post"];
         setData(postData);
         setReview(postData);
@@ -81,7 +80,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="제목을 입력해주세요."
               name="title"
-              defaultValue={data ? data.title : review.title}
+              value={review.title}
             />
           </CreateInput>
           <CreateInput>
@@ -91,14 +90,14 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="방탈출 테마를 입력해주세요."
               name="roomname"
-              defaultValue={data ? data.roomname : review.roomname}
+              value={review.roomname}
             />
           </CreateInput>
           <CreateSelect>
             <select
               onChange={onChangeHandler}
               name="star"
-              defaultValue={data ? data.star : review.star}
+              value={review.star}
               required
             >
               {Array(6)
@@ -116,7 +115,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
             onChange={onChangeHandler}
             placeholder="내용을 입력해주세요."
             name="content"
-            defaultValue={data ? data.content : review.content}
+            value={review.content}
             required
           ></textarea>
         </CreateTextArea>
