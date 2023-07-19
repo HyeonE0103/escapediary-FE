@@ -25,7 +25,8 @@ const Login = () => {
         { id: login.id, password: login.password },
         { withCredentials: true }
       )
-      .then(() => {
+      .then((res) => {
+        console.log(res.data);
         onClickUserShow();
         goToPath("/");
       })
