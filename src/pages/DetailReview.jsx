@@ -26,6 +26,7 @@ const DetailReview = () => {
     };
     api();
   }, []);
+  console.log("상세 post 조회", data);
   return (
     <DetailWrap>
       <Header />

@@ -44,7 +44,7 @@ const MainPage = () => {
     }
   }, [page]);
 
-  console.log(data);
+  console.log("메인 post 조회", data);
   return (
     <WrapMain>
       <Header />
