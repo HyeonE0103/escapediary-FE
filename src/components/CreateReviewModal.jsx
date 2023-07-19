@@ -80,7 +80,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="제목을 입력해주세요."
               name="title"
-              value={review.value}
+              value={data ? data.title : review.value}
             />
           </CreateInput>
           <CreateInput>
@@ -90,14 +90,14 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="방탈출 테마를 입력해주세요."
               name="roomname"
-              value={review.value}
+              value={data ? data.roomname : review.value}
             />
           </CreateInput>
           <CreateSelect>
             <select
               onChange={onChangeHandler}
               name="star"
-              value={review.star}
+              value={data ? data.star : review.star}
               required
             >
               {Array(6)
@@ -115,7 +115,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
             onChange={onChangeHandler}
             placeholder="내용을 입력해주세요."
             name="content"
-            value={review.content}
+            value={data ? data.content : review.content}
             required
           ></textarea>
         </CreateTextArea>
@@ -124,7 +124,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
             닫기
           </Button>
           <Button type="submit" color={"black"} size={"small"}>
-            작성
+            {data ? '수정' : '작성'}
           </Button>
         </CreateButton>
       </CreateContainer>
