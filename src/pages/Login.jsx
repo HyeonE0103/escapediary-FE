@@ -32,6 +32,7 @@ const Login = () => {
   const onClickUserShow = async () => {
     console.log("a");
     const api = process.env.REACT_APP_URL + "user";
+    console.log(api);
     try {
       console.log("b");
       const apiData = await axios.get(api, { withCredentials: true });
