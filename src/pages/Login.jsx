@@ -30,10 +30,13 @@ const Login = () => {
     goToPath("/");
   };
   const onClickUserShow = async () => {
+    console.log("a");
     const api = process.env.REACT_APP_URL;
     try {
+      console.log("b");
       const apiData = await axios.get(api, { withCredentials: true });
       console.log(apiData);
+      console.log("c");
     } catch (e) {
       console.log(e);
     }
