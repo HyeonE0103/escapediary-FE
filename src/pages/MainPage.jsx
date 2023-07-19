@@ -29,7 +29,7 @@ const MainPage = () => {
       const api = process.env.REACT_APP_URL + "posts";
       try {
         const apiData = await axios.get(api, { withCredentials: true });
-        setData(apiData.data.posts.reverse());
+        setData(apiData.data.posts);
         setPosts(apiData.data.posts.slice(0, limit));
       } catch (e) {
         console.log(e);
