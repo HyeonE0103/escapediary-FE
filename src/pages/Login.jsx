@@ -30,16 +30,19 @@ const Login = () => {
     goToPath("/");
   };
   const onClickUserShow = async () => {
-    console.log("a");
-    const api = process.env.REACT_APP_URL + "user";
-    console.log(api);
     try {
-      console.log("b");
-      const apiData = await axios.get(api, { withCredentials: true });
-      console.log(apiData);
-      console.log("c");
-    } catch (e) {
-      console.log(e);
+      const api = process.env.REACT_APP_URL + "user";
+      const yourAccessTokenHere =
+        "20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Inp4YzEyMzQiLCJpYXQiOjE2ODk3NTQyODJ9.KOj2sf1QD3jP80nh30LhW9uTXbNoFHajlgB1RrkGOz0";
+      const response = await axios.get(api, {
+        headers: {
+          Authorization: `Bearer ${yourAccessTokenHere}`,
+        },
+        withCredentials: true,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
