@@ -15,7 +15,6 @@ const Login = () => {
   const onClickSumbit = (e) => {
     e.preventDefault();
     const api = process.env.REACT_APP_URL + "login";
-    console.log("주소", process.env.REACT_APP_URL);
     axios
       .post(
         api,
@@ -26,7 +25,18 @@ const Login = () => {
       // goToPath("/"))
       .catch((error) => console.log(error));
   };
-
+  const onClickMain = () => {
+    goToPath("/");
+  };
+  const onClickUserShow = async () => {
+    const api = process.env.REACT_APP_URL;
+    try {
+      const apiData = await axios.get(api, { withCredentials: true });
+      console.log(apiData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <LoginWrap onSubmit={onClickSumbit}>
       <LoginContainer>
@@ -55,6 +65,12 @@ const Login = () => {
         <LoginFooter>
           <Button color="black" size="medium" type="submit">
             Login
+          </Button>
+          <Button color="black" size="medium" onClick={onClickMain}>
+            메인가기
+          </Button>
+          <Button color="black" size="medium" onClick={onClickUserShow}>
+            user 조회
           </Button>
         </LoginFooter>
       </LoginContainer>
