@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
 import { useSelector } from "react-redux";
+import { isAsyncThunkAction } from "@reduxjs/toolkit";
 
 const DetailReview = () => {
   const [data, setData] = useState(null);
@@ -27,6 +28,17 @@ const DetailReview = () => {
     };
     api();
   }, []);
+
+  const deleteReview = async () => {
+    const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
+    try {
+      await axios.delete(url, { withCredentials: true });
+      goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   console.log("상세 post 조회", data);
   user !== null && console.log("상세 user id 조회", user["data"].id);
   return (
@@ -48,7 +60,7 @@ const DetailReview = () => {
                 <Button color={"white"} size={"small"}>
                   수정
                 </Button>
-                <Button color={"white"} size={"small"}>
+                <Button color={"white"} size={"small"} onClick={deleteReview}>
                   삭제
                 </Button>
               </div>
