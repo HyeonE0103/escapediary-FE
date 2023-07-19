@@ -20,7 +20,7 @@ const DetailReview = () => {
       console.log("상세url", url);
       try {
         const apiData = await axios.get(url);
-        const postData = apiData.data.posts;
+        const postData = apiData.data;
         setData(postData);
       } catch (e) {
         console.log(e);
