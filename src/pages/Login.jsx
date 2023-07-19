@@ -16,7 +16,11 @@ const Login = () => {
     e.preventDefault();
     const api = process.env.REACT_APP_URL + "login";
     axios
-      .post(api, { id: login.id, password: login.password })
+      .post(
+        api,
+        { id: login.id, password: login.password },
+        { withCredentials: true }
+      )
       .then((response) => console.log(response.data))
       // goToPath("/"))
       .catch((error) => console.log(error));

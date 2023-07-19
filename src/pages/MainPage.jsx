@@ -24,9 +24,10 @@ const MainPage = () => {
 
   useEffect(() => {
     const api = async () => {
-      const api = process.env.REACT_APP_URL + "posts"
+      const api = process.env.REACT_APP_URL + "posts";
       try {
         const apiData = await axios.get(api);
+        console.log(apiData);
         setData(apiData.data.posts.reverse());
         setPosts(apiData.data.posts.slice(0, limit));
       } catch (e) {
