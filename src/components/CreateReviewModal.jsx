@@ -59,6 +59,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
         console.log(apiData.data);
         const postData = apiData.data["post"];
         setData(postData);
+        setReview(postData);
       } catch (e) {
         console.log(e);
       }
