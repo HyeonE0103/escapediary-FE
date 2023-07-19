@@ -5,10 +5,13 @@ import Input from "../components/common/Input";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Header from "../components/common/Header";
+import { useDispatch } from "react-redux";
+import { getuserData } from "../redux/modules/userSlice";
 
 const Login = () => {
   const [login, setLogin] = useState({ id: "", password: "" });
   const { goToPath } = useNavigation();
+  const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -22,22 +25,22 @@ const Login = () => {
         { id: login.id, password: login.password },
         { withCredentials: true }
       )
-      .then((response) => console.log("data", response))
-      // goToPath("/"))
+      .then((response) => {
+        onClickUserShow();
+        goToPath("/");
+      })
       .catch((error) => console.log(error));
-  };
-  const onClickMain = () => {
-    goToPath("/");
   };
   const onClickUserShow = async () => {
     try {
       const api = process.env.REACT_APP_URL + "user";
       const response = await axios.get(api, { withCredentials: true });
-      console.log("유저 정보:", response.data);
+      dispatch(getuserData(response));
     } catch (error) {
       console.error("유저 조회 실패:", error);
     }
   };
+
   return (
     <LoginWrap>
       <Header buttonShow={"login"} />
@@ -70,12 +73,6 @@ const Login = () => {
           </Button>
         </LoginFooter>
       </LoginContainer>
-      <Button color="black" size="medium" onClick={onClickMain}>
-        메인가기
-      </Button>
-      <Button color="black" size="medium" onClick={onClickUserShow}>
-        user 조회
-      </Button>
     </LoginWrap>
   );
 };
