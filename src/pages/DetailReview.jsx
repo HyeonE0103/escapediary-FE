@@ -42,7 +42,7 @@ const DetailReview = () => {
               <div>{"⭐".repeat(data.star)}</div>
               <div>{data.createdAt.slice(0, 10)}</div>
             </div>
-            {user === data.id && (
+            {user["data"].id === data.id && (
               <div className="userButton">
                 <Button color={"white"} size={"small"}>
                   수정
