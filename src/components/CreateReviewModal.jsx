@@ -81,7 +81,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="제목을 입력해주세요."
               name="title"
-              value={data ? data.title : review.title}
+              defaultValue={data ? data.title : review.title}
             />
           </CreateInput>
           <CreateInput>
@@ -91,14 +91,14 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="방탈출 테마를 입력해주세요."
               name="roomname"
-              value={data ? data.roomname : review.roomname}
+              defaultValue={data ? data.roomname : review.roomname}
             />
           </CreateInput>
           <CreateSelect>
             <select
               onChange={onChangeHandler}
               name="star"
-              value={data ? data.star : review.star}
+              defaultValue={data ? data.star : review.star}
               required
             >
               {Array(6)
@@ -116,7 +116,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
             onChange={onChangeHandler}
             placeholder="내용을 입력해주세요."
             name="content"
-            value={data ? data.content : review.content}
+            defaultValue={data ? data.content : review.content}
             required
           ></textarea>
         </CreateTextArea>
