@@ -57,7 +57,7 @@ const MainPage = () => {
             posts.map((item) => (
               <List
                 key={item.postId}
-                title={item.title}
+                roomName={item.roomname}
                 content={item.content}
                 date={item.createdAt.slice(0, 10)}
                 star={item.star}

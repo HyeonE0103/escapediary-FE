@@ -5,28 +5,29 @@ import { styled } from "styled-components";
 import { useParams } from "react-router-dom";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
+import { useSelector } from "react-redux";
 
 const DetailReview = () => {
   const [data, setData] = useState(null);
-  const [user, setUser] = useState(false);
   const postId = useParams();
+  console.log(postId);
   const { goBack } = useNavigation();
+  const user = useSelector((state) => state.userData);
 
   useEffect(() => {
     const api = async () => {
-      const url = process.env.REACT_APP_URL + "posts";
+      const url = process.env.REACT_APP_URL + `posts/:${postId.postid}`;
       try {
         const apiData = await axios.get(url);
-        const postData = apiData.data.posts.filter(
-          (item) => item.postId === Number(postId.postid)
-        );
-        setData(postData[0]);
+        const postData = apiData.data.posts;
+        setData(postData);
       } catch (e) {
         console.log(e);
       }
     };
     api();
   }, []);
+  console.log(data);
   return (
     <DetailWrap>
       <Header />
@@ -37,11 +38,11 @@ const DetailReview = () => {
               ←
             </div>
             <div className="informationContent">
-              {user && <div>userID</div>}
+              <div>{data.id}</div>
               <div>{"⭐".repeat(data.star)}</div>
               <div>{data.createdAt.slice(0, 10)}</div>
             </div>
-            {user && (
+            {user === data.id && (
               <div className="userButton">
                 <Button color={"white"} size={"small"}>
                   수정
@@ -58,6 +59,7 @@ const DetailReview = () => {
                 ←
               </div>
               <div>{data.title}</div>
+              <div className="roomName">{data.roomname}</div>
             </div>
             <div className="contentContent">{data.content}</div>
           </ContentSection>
@@ -143,6 +145,10 @@ const ContentSection = styled.div`
     word-break: break-all;
     overflow-wrap: break-word;
     padding: 5%;
+    .roomName {
+      padding: 2%;
+      font-size: 1.5rem;
+    }
     .backIcon {
       display: none;
     }
@@ -163,6 +169,10 @@ const ContentSection = styled.div`
     .contentTitle {
       font-size: 1.3rem;
       flex-direction: column;
+      .roomName {
+        padding: 2%;
+        font-size: 1.1rem;
+      }
       .backIcon {
         display: unset;
         font-size: 1.5rem;

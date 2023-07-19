@@ -1,11 +1,11 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const MainList = ({ title, content, date, star, onClick }) => {
+const MainList = ({ roomName, content, date, star, onClick }) => {
   return (
     <ListContainer onClick={onClick}>
       <ListLeft>
-        <h2>{title}</h2>
+        <h2>{roomName}</h2>
         <div>{content}</div>
       </ListLeft>
       <ListRight>
