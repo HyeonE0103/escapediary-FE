@@ -105,14 +105,20 @@ const JoinMembershipWrap = styled.form`
   flex-direction: column;
 `;
 const JoinMembershipContainer = styled.div`
-  width: 40rem;
-  height: 50rem;
+  width: 50%;
+  height: 80%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   border: 1px solid #d8d8d8;
-  position: relative;
   padding: 0 2rem;
   box-sizing: border-box;
+  @media (max-width: 1023px) {
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem;
+  }
 `;
 const JoinMebershipHeader = styled.div`
   flex: 1;
@@ -120,6 +126,7 @@ const JoinMebershipHeader = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   h1 {
     font-size: 3rem;
     font-weight: bold;
@@ -130,9 +137,16 @@ const JoinMebershipBody = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  @media (max-width: 1023px) {
+    gap: 0;
+    justify-content: space-evenly;
+  }
   p {
     color: #848484;
     font-size: 0.8rem;
+    @media (max-width: 480px) {
+      font-size: 0.5rem;
+    }
   }
 `;
 const JoinMebershipFooter = styled.div`
