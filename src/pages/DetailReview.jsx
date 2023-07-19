@@ -41,7 +41,7 @@ const DetailReview = () => {
             <div className="informationContent">
               <div>{data.id}</div>
               <div>{"⭐".repeat(data.star)}</div>
-              <div>{data.createdAt.slice(0, 10)}</div>
+              <div>{data.createdAt}</div>
             </div>
             {user === data.id && (
               <div className="userButton">
