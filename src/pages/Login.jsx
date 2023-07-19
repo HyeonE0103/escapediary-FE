@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <LoginWrap onSubmit={onClickSumbit}>
       <Header buttonShow={"login"} />
-      <LoginContainer>
+      <LoginContainer onSubmit={onClickSumbit}>
         <LoginHeader>
           <h1>Login</h1>
         </LoginHeader>
@@ -72,24 +72,24 @@ const Login = () => {
           <Button color="black" size="medium" type="submit">
             Login
           </Button>
-          <Button color="black" size="medium" onClick={onClickMain}>
-            메인가기
-          </Button>
-          <Button color="black" size="medium" onClick={onClickUserShow}>
-            user 조회
-          </Button>
         </LoginFooter>
       </LoginContainer>
+      <Button color="black" size="medium" onClick={onClickMain}>
+        메인가기
+      </Button>
+      <Button color="black" size="medium" onClick={onClickUserShow}>
+        user 조회
+      </Button>
     </LoginWrap>
   );
 };
-const LoginWrap = styled.form`
+const LoginWrap = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
 `;
-const LoginContainer = styled.div`
+const LoginContainer = styled.form`
   width: 50%;
   height: 80%;
   margin: auto;
