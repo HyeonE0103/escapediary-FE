@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import escape from "../modules/escapeSlice";
+import userSlice from "../modules/userSlice";
 
 const store = configureStore({
-  reducer: { escape },
+  reducer: { userSlice },
 });
 export default store;
