@@ -19,7 +19,7 @@ const DetailReview = () => {
       try {
         const apiData = await axios.get(url);
         console.log(apiData.data);
-        const postData = apiData.data["data"];
+        const postData = apiData.data["post"];
         setData(postData);
       } catch (e) {
         console.log(e);
