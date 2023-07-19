@@ -17,7 +17,6 @@ const DetailReview = () => {
   useEffect(() => {
     const api = async () => {
       const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
-      console.log("상세url", url);
       try {
         const apiData = await axios.get(url);
         const postData = apiData.data;
@@ -29,6 +28,9 @@ const DetailReview = () => {
     api();
   }, []);
   console.log(data);
+  console.log(data.title);
+  console.log(data.data);
+  console.log(data.data.title);
   return (
     <DetailWrap>
       <Header />
