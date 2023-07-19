@@ -27,7 +27,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
       }
     };
     api();
-  }, [postid]);
+  }, [postId]);
 
   const onChangeHandler = (e) => {
     setReview({
