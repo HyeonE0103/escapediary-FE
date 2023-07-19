@@ -21,7 +21,7 @@ const MainPage = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const openModalHandler = () => {
-    setOpenModal(!openModal);
+    userData ? setOpenModal(!openModal) : alert("로그인이 필요합니다.");
   };
 
   useEffect(() => {
@@ -37,11 +37,14 @@ const MainPage = () => {
     };
     api();
   }, []);
+
   useEffect(() => {
     if (data) {
       setPosts(data.slice(offset, offset + limit));
     }
   }, [page]);
+
+  console.log(data);
   return (
     <WrapMain>
       <Header />
