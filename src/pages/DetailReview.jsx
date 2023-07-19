@@ -6,13 +6,19 @@ import { useParams } from "react-router-dom";
 import Button from "../components/common/Button";
 import useNavigation from "../hooks/useNavigation";
 import { useSelector } from "react-redux";
-import { isAsyncThunkAction } from "@reduxjs/toolkit";
+import CreateReviewModal from "../components/CreateReviewModal";
 
 const DetailReview = () => {
   const [data, setData] = useState(null);
   const postId = useParams();
   const { goBack } = useNavigation();
   const user = useSelector((state) => state.userData);
+
+  const [openModal, setOpenModal] = useState(false);
+  const openModalHandler = () => {
+    console.log("test!!!");
+    setOpenModal(!openModal);
+  };
 
   useEffect(() => {
     const api = async () => {
@@ -57,7 +63,7 @@ const DetailReview = () => {
             </div>
             {user !== null && user["data"].id === data.id && (
               <div className="userButton">
-                <Button color={"white"} size={"small"}>
+                <Button color={"white"} size={"small"} onClick={openModalHandler}>
                   수정
                 </Button>
                 <Button color={"white"} size={"small"} onClick={deleteReview}>
@@ -76,6 +82,11 @@ const DetailReview = () => {
             </div>
             <div className="contentContent">{data.content}</div>
           </ContentSection>
+          {setOpenModal
+          ? openModal && (
+              <CreateReviewModal openModalHandler={openModalHandler} />
+            )
+          : null}
         </DetailBody>
       )}
     </DetailWrap>
