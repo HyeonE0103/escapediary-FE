@@ -9,9 +9,13 @@ const Header = () => {
   return (
     <HeaderWrap>
       <p onClick={() => goToPath("/")}>EscapeDiary</p>
-      {user && (
+      {user ? (
         <Button color={"white"} size={"small"}>
           로그아웃
+        </Button>
+      ) : (
+        <Button color={"white"} size={"small"}>
+          로그인
         </Button>
       )}
     </HeaderWrap>

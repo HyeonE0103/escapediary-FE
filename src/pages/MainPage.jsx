@@ -25,6 +25,7 @@ const MainPage = () => {
   useEffect(() => {
     const api = async () => {
       const api = process.env.REACT_APP_URL + "posts";
+      console.log(api);
       try {
         const apiData = await axios.get(api);
         console.log(apiData);
