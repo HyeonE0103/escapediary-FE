@@ -32,17 +32,10 @@ const Login = () => {
   const onClickUserShow = async () => {
     try {
       const api = process.env.REACT_APP_URL + "user";
-      const yourAccessTokenHere =
-        "20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Inp4YzEyMzQiLCJpYXQiOjE2ODk3NTQyODJ9.KOj2sf1QD3jP80nh30LhW9uTXbNoFHajlgB1RrkGOz0";
-      const response = await axios.get(api, {
-        headers: {
-          Authorization: `Bearer ${yourAccessTokenHere}`,
-        },
-        withCredentials: true,
-      });
-      console.log(response);
+      const response = await axios.get(api, { withCredentials: true });
+      console.log("유저 정보:", response.data);
     } catch (error) {
-      console.log(error);
+      console.error("유저 조회 실패:", error);
     }
   };
   return (
