@@ -28,7 +28,7 @@ const DetailReview = () => {
     api();
   }, []);
   console.log("상세 post 조회", data);
-  user !== null && console.log("상세 user id 조회", user.id);
+  user !== null && console.log("상세 user id 조회", user["data"].id);
   return (
     <DetailWrap>
       <Header />
