@@ -12,6 +12,22 @@ const CreateReviewModal = ({ openModalHandler }) => {
     star: "0",
     content: "",
   });
+  const [data, setData] = useState(null);
+  const postId = useParams();
+
+  useEffect(() => {
+    const api = async () => {
+      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
+      try {
+        const { data } = await axios.get(url);
+        setData(data.post);
+        setReview(data.post);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    api();
+  }, [postid]);
 
   const onChangeHandler = (e) => {
     setReview({
@@ -19,23 +35,6 @@ const CreateReviewModal = ({ openModalHandler }) => {
       [e.target.name]: e.target.value,
     });
   };
-
-  const [data, setData] = useState(null);
-  const postId = useParams();
-  useEffect(() => {
-    const api = async () => {
-      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
-      try {
-        const apiData = await axios.get(url);
-        const postData = apiData.data["post"];
-        setData(postData);
-        setReview(postData);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    api();
-  }, []);
 
   const onClickSubmit = (e) => {
     e.preventDefault();
@@ -47,47 +46,30 @@ const CreateReviewModal = ({ openModalHandler }) => {
       alert(
         "제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요."
       );
-    } else if (data) {
-      const api = process.env.REACT_APP_URL + `posts/${postId.postid}`;
-        axios
-        .put(
-          api,
-          {
-            title: review.title,
-            roomname: review.roomname,
-            star: review.star,
-            content: review.content,
-          },
-          { withCredentials: true })
-          // eslint-disable-next-line no-restricted-globals
-        .then((response) => location.reload())
-        .catch((error) => console.log(error));
     } else {
-      const api = process.env.REACT_APP_URL + "posts";
-      axios
-        .post(
-          api,
-          {
-            title: review.title,
-            roomname: review.roomname,
-            star: review.star,
-            content: review.content,
-          },
-          { withCredentials: true }
-        )
+      const api = process.env.REACT_APP_URL + (data ? `posts/${postId.postid}` : "posts");
+      const method = data ? "put" : "post";
+      axios[method](
+        api,
+        {
+          title: review.title,
+          roomname: review.roomname,
+          star: review.star,
+          content: review.content,
+        },
+        { withCredentials: true }
+      )
         // eslint-disable-next-line no-restricted-globals
         .then((response) => location.reload())
         .catch((error) => console.log(error));
     }
   };
 
-
-
   return (
     <CreateWrap onSubmit={onClickSubmit}>
       <CreateDiv></CreateDiv>
       <CreateContainer>
-        <h1>{data ? '수정하기' : '작성하기'}</h1>
+        <h1>{data ? "수정하기" : "작성하기"}</h1>
         <CreateBody>
           <CreateInput>
             <Input
@@ -140,7 +122,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
             닫기
           </Button>
           <Button type="submit" color={"black"} size={"small"}>
-            {data ? '수정' : '작성'}
+            {data ? "수정" : "작성"}
           </Button>
         </CreateButton>
       </CreateContainer>
