@@ -17,7 +17,7 @@ const MainPage = () => {
   const limit = 6;
   const offset = (page - 1) * limit;
   const userData = useSelector((state) => state.userData);
-  console.log(userData);
+  console.log("로그인시 유저 데이터", userData);
 
   const [openModal, setOpenModal] = useState(false);
   const openModalHandler = () => {

@@ -35,7 +35,7 @@ const Login = () => {
     try {
       const api = process.env.REACT_APP_URL + "user";
       const response = await axios.get(api, { withCredentials: true });
-      console.log(response.data);
+      console.log("로그인시 유저 데이터", response.data);
       dispatch(getuserData(response.data));
     } catch (error) {
       console.error("유저 조회 실패:", error);
