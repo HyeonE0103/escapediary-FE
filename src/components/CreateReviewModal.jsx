@@ -20,6 +20,23 @@ const CreateReviewModal = ({ openModalHandler }) => {
     });
   };
 
+  const [data, setData] = useState(null);
+  const postId = useParams();
+  useEffect(() => {
+    const api = async () => {
+      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
+      try {
+        const apiData = await axios.get(url);
+        const postData = apiData.data["post"];
+        setData(postData);
+        setReview(postData);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    api();
+  }, []);
+
   const onClickSubmit = (e) => {
     e.preventDefault();
     if (
@@ -30,6 +47,21 @@ const CreateReviewModal = ({ openModalHandler }) => {
       alert(
         "제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요."
       );
+    } else if (data) {
+      const api = process.env.REACT_APP_URL + `posts/${postId.postid}`;
+        axios
+        .put(
+          api,
+          {
+            title: review.title,
+            roomname: review.roomname,
+            star: review.star,
+            content: review.content,
+          },
+          { withCredentials: true })
+          // eslint-disable-next-line no-restricted-globals
+        .then((response) => location.reload())
+        .catch((error) => console.log(error));
     } else {
       const api = process.env.REACT_APP_URL + "posts";
       axios
@@ -49,23 +81,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
     }
   };
 
-  const [data, setData] = useState(null);
-  const postId = useParams();
-  useEffect(() => {
-    const api = async () => {
-      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
-      try {
-        const apiData = await axios.get(url);
-        const postData = apiData.data["post"];
-        setData(postData);
-        setReview(postData);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    api();
-  }, []);
-  console.log("모달 데이터", data);
+
 
   return (
     <CreateWrap onSubmit={onClickSubmit}>
