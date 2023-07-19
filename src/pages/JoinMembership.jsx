@@ -21,7 +21,7 @@ const JoinMembership = () => {
       );
     } else if (!/^[a-z0-9+]{6,12}$/.test(join.password)) {
       alert(
-        "비밀번호는 10자 이상 16자 이하의 영문 소문자, 숫자만 입력 가능합니다."
+        "비밀번호는 6자 이상 12자 이하의 영문 소문자, 숫자만 입력 가능합니다."
       );
     } else if (join.password.trim() !== join.confirm.trim()) {
       alert("비밀번호를 다시 확인해주세요.");
@@ -58,7 +58,7 @@ const JoinMembership = () => {
               onChange={onChangeHandler}
             />
             <p>
-              아이디는 4자 이상 6자 이하의 영문 소문자, 숫자만 입력 가능합니다.
+              아이디는 5자 이상 15자 이하의 영문 소문자, 숫자만 입력 가능합니다.
             </p>
           </div>
           <div>
@@ -71,8 +71,7 @@ const JoinMembership = () => {
               onChange={onChangeHandler}
             />
             <p>
-              비밀번호는 10자 이상 16자 이하의 영문 소문자, 숫자만 입력
-              가능합니다.
+              비밀번호는 6자 이상 12자 이하의 영문 소문자, 숫자만 입력 가능합니다.
             </p>
           </div>
           <div>
