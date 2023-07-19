@@ -4,6 +4,7 @@ import Button from "../components/common/Button";
 import { styled } from "styled-components";
 import axios from "axios";
 import useNavigation from "../hooks/useNavigation";
+import Header from "../components/common/Header";
 
 const JoinMembership = () => {
   const [join, setJoin] = useState({ id: "", password: "", confirm: "" });
@@ -43,6 +44,7 @@ const JoinMembership = () => {
 
   return (
     <JoinMembershipWrap onSubmit={onClickSubmit}>
+      <Header />
       <JoinMembershipContainer>
         <JoinMebershipHeader>
           <h1>회원가입</h1>
@@ -71,7 +73,8 @@ const JoinMembership = () => {
               onChange={onChangeHandler}
             />
             <p>
-              비밀번호는 6자 이상 12자 이하의 영문 소문자, 숫자만 입력 가능합니다.
+              비밀번호는 6자 이상 12자 이하의 영문 소문자, 숫자만 입력
+              가능합니다.
             </p>
           </div>
           <div>
@@ -99,8 +102,7 @@ const JoinMembershipWrap = styled.form`
   width: 100%;
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 `;
 const JoinMembershipContainer = styled.div`
   width: 40rem;

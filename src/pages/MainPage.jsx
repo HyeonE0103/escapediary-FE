@@ -12,7 +12,6 @@ const MainPage = () => {
   const { goToPath } = useNavigation();
   const [data, setData] = useState(null);
   const [posts, setPosts] = useState(null);
-
   const [page, setPage] = useState(1);
   const limit = 6;
   const offset = (page - 1) * limit;

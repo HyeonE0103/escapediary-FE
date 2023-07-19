@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 import Input from "../components/common/Input";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
+import Header from "../components/common/Header";
 
 const Login = () => {
   const [login, setLogin] = useState({ id: "", password: "" });
@@ -39,6 +40,7 @@ const Login = () => {
   };
   return (
     <LoginWrap onSubmit={onClickSumbit}>
+      <Header buttonShow={"login"} />
       <LoginContainer>
         <LoginHeader>
           <h1>Login</h1>
@@ -81,12 +83,11 @@ const LoginWrap = styled.form`
   width: 100%;
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 `;
 const LoginContainer = styled.div`
-  width: 35rem;
-  height: 40rem;
+  width: 50%;
+  height: 80%;
   margin: auto;
   padding: 3rem;
   display: flex;
@@ -96,9 +97,17 @@ const LoginContainer = styled.div`
   padding: 0 2rem;
   box-sizing: border-box;
   box-shadow: 1rem 1rem;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    box-shadow: none;
+    border: none;
+    width: 90%;
+    height: 90%;
+  }
   @media (max-width: 480px) {
     box-shadow: none;
     border: none;
+    width: 100%;
+    height: 100%;
   }
 `;
 const LoginHeader = styled.div`
@@ -128,6 +137,7 @@ const LoginBody = styled.div`
     margin-left: auto;
     color: #848484;
     cursor: pointer;
+    font-size: 1.2rem;
   }
 `;
 const LoginFooter = styled.div`

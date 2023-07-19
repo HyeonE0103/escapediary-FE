@@ -3,18 +3,22 @@ import Button from "./Button";
 import { styled } from "styled-components";
 import useNavigation from "../../hooks/useNavigation";
 
-const Header = () => {
+const Header = ({ buttonShow }) => {
   const [user, setUser] = useState(false);
   const { goToPath } = useNavigation();
   return (
     <HeaderWrap>
       <p onClick={() => goToPath("/")}>EscapeDiary</p>
-      {user ? (
+      {buttonShow === "loginUser" ? (
         <Button color={"white"} size={"small"}>
           로그아웃
         </Button>
-      ) : (
-        <Button color={"white"} size={"small"}>
+      ) : buttonShow === "login" ? null : (
+        <Button
+          color={"white"}
+          size={"small"}
+          onClick={() => goToPath("/login")}
+        >
           로그인
         </Button>
       )}
@@ -29,6 +33,10 @@ const HeaderWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  @media (max-width: 480px) {
+    display: none;
+  }
+
   p {
     font-size: 2.5rem;
     color: white;
