@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 const DetailReview = () => {
   const [data, setData] = useState(null);
   const postId = useParams();
-  console.log(postId);
   const { goBack } = useNavigation();
   const user = useSelector((state) => state.userData);
 

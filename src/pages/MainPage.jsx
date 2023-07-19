@@ -27,7 +27,6 @@ const MainPage = () => {
   useEffect(() => {
     const api = async () => {
       const api = process.env.REACT_APP_URL + "posts";
-      console.log(api);
       try {
         const apiData = await axios.get(api, { withCredentials: true });
         setData(apiData.data.posts.reverse());
@@ -38,7 +37,6 @@ const MainPage = () => {
     };
     api();
   }, []);
-  console.log(data);
   useEffect(() => {
     if (data) {
       setPosts(data.slice(offset, offset + limit));

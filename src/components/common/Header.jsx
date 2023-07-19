@@ -8,7 +8,10 @@ import axios from "axios";
 const Header = ({ buttonShow }) => {
   const userData = useSelector((state) => state.userData);
   const { goToPath } = useNavigation();
-  const logout = async () => {
+
+  console.log("헤더 유저 데이터", userData);
+
+  const logOut = async () => {
     const api = process.env.REACT_APP_URL + "logout";
     await axios
       .post(api)
@@ -20,10 +23,10 @@ const Header = ({ buttonShow }) => {
       });
   };
   return (
-    <HeaderWrap>
+    <HeaderWrap buttonShow={buttonShow}>
       <p onClick={() => goToPath("/")}>EscapeDiary</p>
       {userData ? (
-        <Button color={"white"} size={"small"}>
+        <Button color={"white"} size={"small"} onClick={logOut}>
           로그아웃
         </Button>
       ) : (
@@ -35,12 +38,6 @@ const Header = ({ buttonShow }) => {
           로그인
         </Button>
       )}
-      <Button color={"white"} size={"small"} onClick={logout}>
-        로그아웃
-      </Button>
-      <Button color={"white"} size={"small"} onClick={() => goToPath("/login")}>
-        로그인
-      </Button>
     </HeaderWrap>
   );
 };
@@ -51,7 +48,7 @@ const HeaderWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  display: ${(props) => (props.buttonShow ? "none" : "flex")};
+  display: ${(buttonShow) => (buttonShow ? "none" : "flex")};
   @media (max-width: 480px) {
     display: none;
   }
