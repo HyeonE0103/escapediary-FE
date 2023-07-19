@@ -43,7 +43,7 @@ const Login = () => {
     }
   };
   return (
-    <LoginWrap onSubmit={onClickSumbit}>
+    <LoginWrap>
       <Header buttonShow={"login"} />
       <LoginContainer onSubmit={onClickSumbit}>
         <LoginHeader>
@@ -93,15 +93,13 @@ const LoginContainer = styled.form`
   width: 50%;
   height: 80%;
   margin: auto;
-  padding: 3rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   border: 1px solid #d8d8d8;
   padding: 0 2rem;
   box-sizing: border-box;
   box-shadow: 1rem 1rem;
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 480px) and (max-width: 1023px) {
     box-shadow: none;
     border: none;
     width: 90%;

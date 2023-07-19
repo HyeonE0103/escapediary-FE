@@ -113,7 +113,9 @@ const JoinMembershipContainer = styled.div`
   border: 1px solid #d8d8d8;
   padding: 0 2rem;
   box-sizing: border-box;
+  box-shadow: 1rem 1rem;
   @media (max-width: 1023px) {
+    box-shadow: none;
     border: none;
     width: 100%;
     height: 100%;
