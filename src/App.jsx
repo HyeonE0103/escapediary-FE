@@ -5,7 +5,6 @@ import DetailReview from "./pages/DetailReview";
 import CreateReviewModal from "./components/CreateReviewModal";
 import Login from "./pages/Login";
 import JoinMembership from "./pages/JoinMembership";
-import Tq from "./pages/Tq";
 
 const App = () => {
   return (
