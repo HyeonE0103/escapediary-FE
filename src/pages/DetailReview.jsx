@@ -28,9 +28,7 @@ const DetailReview = () => {
     api();
   }, []);
   console.log(data);
-  console.log(data.title);
   console.log(data.data);
-  console.log(data.data.title);
   return (
     <DetailWrap>
       <Header />
