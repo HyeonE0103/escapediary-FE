@@ -37,7 +37,7 @@ const buttonSizeHandler = (size) => {
       @media (max-width: 480px) {font-size:1rem; width:6rem; height:2.5rem};`;
     case "small":
       return `font-size: 0.8rem; width: 6rem; height: 2.5rem;
-      @media (max-width: 480px) {font-size:0.8rem; width:4rem; height:2rem};`;
+      @media (max-width: 480px) {font-size:0.8rem; width:5rem; height:2rem};`;
     default:
       return;
   }

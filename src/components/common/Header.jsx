@@ -66,7 +66,7 @@ const HeaderWrap = styled.div`
     font-weight: bold;
     cursor: pointer;
     @media (max-width: 480px) {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   }
 `;
