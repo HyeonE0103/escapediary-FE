@@ -9,7 +9,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
   const [review, setReview] = useState({
     title: "",
     roomname: "",
-    star: "0",
+    star: "",
     content: "",
   });
   const [data, setData] = useState(null);
@@ -47,7 +47,8 @@ const CreateReviewModal = ({ openModalHandler }) => {
         "제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요."
       );
     } else {
-      const api = process.env.REACT_APP_URL + (data ? `posts/${postId.postid}` : "posts");
+      const api =
+        process.env.REACT_APP_URL + (data ? `posts/${postId.postid}` : "posts");
       const method = data ? "put" : "post";
       axios[method](
         api,
@@ -61,7 +62,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
       )
         // eslint-disable-next-line no-restricted-globals
         .then((response) => location.reload())
-        .catch((error) => console.log(error));
+        .catch((error) => alert("잘못 작성하셨습니다 다시 확인해 주세요"));
     }
   };
 
@@ -101,7 +102,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               {Array(6)
                 .fill()
                 .map((_, index) => (
-                  <option key={index} value={index === 0 ? "0" : index}>
+                  <option key={index} value={index === 0 ? "" : index}>
                     {index === 0 ? "별점을 선택해주세요." : "⭐".repeat(index)}
                   </option>
                 ))}
