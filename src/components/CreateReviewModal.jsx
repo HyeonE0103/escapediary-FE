@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 import Button from "./common/Button";
 import axios from "axios";
@@ -12,6 +12,22 @@ const CreateReviewModal = ({ openModalHandler }) => {
     star: "0",
     content: "",
   });
+  const [data, setData] = useState(null);
+  const postId = useParams();
+
+  useEffect(() => {
+    const api = async () => {
+      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
+      try {
+        const { data } = await axios.get(url);
+        setData(data.post);
+        setReview(data.post);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    api();
+  }, [postId]);
 
   const onChangeHandler = (e) => {
     setReview({
@@ -31,47 +47,29 @@ const CreateReviewModal = ({ openModalHandler }) => {
         "제목과 방탈출 테마는 25자 이하, 본문은 500자 이하로 작성해주세요."
       );
     } else {
-      const api = process.env.REACT_APP_URL + "posts";
-      axios
-        .post(
-          api,
-          {
-            title: review.title,
-            roomname: review.roomname,
-            star: review.star,
-            content: review.content,
-          },
-          { withCredentials: true }
-        )
+      const api = process.env.REACT_APP_URL + (data ? `posts/${postId.postid}` : "posts");
+      const method = data ? "put" : "post";
+      axios[method](
+        api,
+        {
+          title: review.title,
+          roomname: review.roomname,
+          star: review.star,
+          content: review.content,
+        },
+        { withCredentials: true }
+      )
         // eslint-disable-next-line no-restricted-globals
         .then((response) => location.reload())
         .catch((error) => console.log(error));
     }
   };
 
-  const [data, setData] = useState(null);
-  const postId = useParams();
-  useEffect(() => {
-    const api = async () => {
-      const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
-      try {
-        const apiData = await axios.get(url);
-        console.log(apiData.data);
-        const postData = apiData.data["post"];
-        setData(postData);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    api();
-  }, []);
-  console.log("모달 데이터", data);
-
   return (
     <CreateWrap onSubmit={onClickSubmit}>
       <CreateDiv></CreateDiv>
       <CreateContainer>
-        <h1>작성하기</h1>
+        <h1>{data ? "수정하기" : "작성하기"}</h1>
         <CreateBody>
           <CreateInput>
             <Input
@@ -80,7 +78,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="제목을 입력해주세요."
               name="title"
-              value={review.value}
+              value={review.title}
             />
           </CreateInput>
           <CreateInput>
@@ -90,7 +88,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               type="text"
               placeHolderText="방탈출 테마를 입력해주세요."
               name="roomname"
-              value={review.value}
+              value={review.roomname}
             />
           </CreateInput>
           <CreateSelect>
@@ -103,7 +101,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               {Array(6)
                 .fill()
                 .map((_, index) => (
-                  <option key={index} value={index === 0 ? "" : index}>
+                  <option key={index} value={index === 0 ? "0" : index}>
                     {index === 0 ? "별점을 선택해주세요." : "⭐".repeat(index)}
                   </option>
                 ))}
@@ -124,7 +122,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
             닫기
           </Button>
           <Button type="submit" color={"black"} size={"small"}>
-            작성
+            {data ? "수정" : "작성"}
           </Button>
         </CreateButton>
       </CreateContainer>
