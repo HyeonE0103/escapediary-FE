@@ -5,7 +5,6 @@ import List from "../components/MainList";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
 import Pagenation from "../components/common/Pagenation";
-import Header from "../components/common/Header";
 import CreateReviewModal from "../components/CreateReviewModal";
 import { useSelector } from "react-redux";
 
@@ -47,7 +46,6 @@ const MainPage = () => {
   console.log("메인 post 조회", data);
   return (
     <WrapMain>
-      <Header />
       <MainBody>
         <div className="MainButtonSection">
           <Button color={"black"} size={"medium"} onClick={openModalHandler}>
@@ -60,7 +58,7 @@ const MainPage = () => {
               <List
                 key={item.postId}
                 roomName={item.roomname}
-                content={item.content}
+                title={item.title}
                 date={item.createdAt.slice(0, 10)}
                 star={item.star}
                 onClick={() => goToPath(`/detail/${item.postId}`)}
@@ -88,7 +86,10 @@ const MainPage = () => {
 };
 const WrapMain = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
+  @media (max-width: 480px) {
+    height: 100vh;
+  }
 `;
 const MainBody = styled.div`
   box-sizing: border-box;

@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Header from "../components/common/Header";
 import { styled } from "styled-components";
 import { useParams } from "react-router-dom";
 import Button from "../components/common/Button";
@@ -49,7 +48,6 @@ const DetailReview = () => {
   user !== null && console.log("상세 user id 조회", user["data"].id);
   return (
     <DetailWrap>
-      <Header />
       {data && (
         <DetailBody>
           <InformationSection>
@@ -63,7 +61,11 @@ const DetailReview = () => {
             </div>
             {user !== null && user["data"].id === data.id && (
               <div className="userButton">
-                <Button color={"white"} size={"small"} onClick={openModalHandler}>
+                <Button
+                  color={"white"}
+                  size={"small"}
+                  onClick={openModalHandler}
+                >
                   수정
                 </Button>
                 <Button color={"white"} size={"small"} onClick={deleteReview}>
@@ -83,10 +85,10 @@ const DetailReview = () => {
             <div className="contentContent">{data.content}</div>
           </ContentSection>
           {setOpenModal
-          ? openModal && (
-              <CreateReviewModal openModalHandler={openModalHandler} />
-            )
-          : null}
+            ? openModal && (
+                <CreateReviewModal openModalHandler={openModalHandler} />
+              )
+            : null}
         </DetailBody>
       )}
     </DetailWrap>
@@ -94,9 +96,12 @@ const DetailReview = () => {
 };
 const DetailWrap = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
+  @media (max-width: 480px) {
+    height: 100vh;
+  }
 `;
 const DetailBody = styled.div`
   box-sizing: border-box;
