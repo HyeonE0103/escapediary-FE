@@ -16,7 +16,7 @@
 
 ### 1. 프로젝트 개요
 
-나의 방탈출 후기 블로그
+방탈출 평점 후기 블로그
 <br />
 
 ### 2. 개발 환경
@@ -31,7 +31,9 @@
 
 ### 4. 프로젝트 내용
 
-![projectTemp](https://user-images.githubusercontent.com/87955005/152466049-f9c573aa-ebed-4978-a027-0cc82364b1d6.png)
+<img src="https://github.com/hyeon12/escapediary-FE/assets/56420106/9dc5c151-0b8f-4d06-9b81-1092a6b50edc" width="300" height="500"/>
+
+<img src="https://github.com/hyeon12/escapediary-FE/assets/56420106/37749b8e-9a78-4556-931b-959596badddc" width="300" height="500"/>
 
 방탈출을 좋아하는 사람들을 위한 **방탈출 후기 웹사이트**
 방탈출을 좋아하는 사람들끼리 방탈출에 대한 후기를 남기고 평점을 매겨
@@ -48,9 +50,9 @@
 - 🚫 분탕러는 출입 금지!
   - 로그인을 한 사람만 게시물 작성 가능
 - 👮 게시물 보호
-  - 자신이 작성한 게시물만 삭제나 수정 가능
+  - 자신이 작성한 게시물만 삭제, 수정 가능
 - 👁‍🗨 언제 어디서나 웹사이트에서 확인 가능
-  - 테스크탑, 태블릿, 스마트폰 반응현 구현
+  - 테스크탑, 태블릿, 스마트폰 반응형 구현
 
 <br />
 <br />
@@ -75,52 +77,102 @@
 - 이소현: 5조 자칭 분위기 메이커
 - 손규리: 겸손 = 규리
 
-<br />
-<br />
-<br />
+#### 프론트 업무 역할
 
-<!-- # 🔎 Detail
-
-### 1. 주요 코드
-
-- 작성한 **코드**를 설명합니다.
-  ```java
-  System.out.println("설명에 부합하는 코드만 기입합니다.");
-  ```
-- 작성한 **코드**를 설명합니다.
-  ```sql
-  begin
-      dbms_output.put_line('설명에 부합하는 코드만 기입합니다.');
-  end;
-  ```
-- 작성한 **코드**를 설명합니다.
-  ```javascript
-  console.log("설명에 부합하는 코드만 기입합니다.");
-  ```
+- 이소현: UI제작, 프론트 기능구현, 백엔드와 협업, 문서작업
+- 손규리: UI제작, 프론트 기능구현, 백엔드와 협업, 문서작업
 
 <br />
 <br />
+<br />
 
-### 2. 주요 코드
+# 🔎 Detail
 
-- 작성한 **코드**를 설명합니다.
-  ```java
-  System.out.println("설명에 부합하는 코드만 기입합니다.");
-  ```
-- 작성한 **코드**를 설명합니다.
-  ```sql
-  begin
-      dbms_output.put_line('설명에 부합하는 코드만 기입합니다.');
-  end;
-  ```
-- 작성한 **코드**를 설명합니다.
-  ```javascript
-  console.log("설명에 부합하는 코드만 기입합니다.");
+### 주요 코드
+
+- 로그인한 유저는 로그인 페이지에 들어갈 수 없음
+
+  ```js
+  <Route element={<PrivateRoute />}>
+    <Route path="login" element={<Login />} />
+    <Route path="join-membership" element={<JoinMembership />} />
+  </Route>
   ```
 
+  로그인한 사용자는 페이지에서 로그인과 회원가입 페이지를 못가도록 해놓았지만
+  주소창을 이용해 억지로 접근할 경우 alert으로 로그인한 회원이라고 알려준뒤 main화면으로 보내준다
+  <br>
+
+- 로그인 했을 경우 유저 데이터를 redux에서 관리
+
+  ```js
+  const onClickUserShow = async () => {
+    try {
+      const api = process.env.REACT_APP_URL + "user";
+      const response = await axios.get(api, { withCredentials: true });
+      dispatch(getUserData(response.data));
+    } catch (error) {
+      console.error("유저 조회 실패:", error);
+    }
+  };
+  ```
+
+  토큰을 확인할 수 없기 때문에 로그인 된 순간 토큰으로 유저의 필요한 정보를
+  redux에서 관리해 redux에서 관리하는 유저가 있다면 로그인으로 판별하여
+  로그인사용자와 비로그인 사용자의 UI를 다르게 보여준다
+
+  <br>
+
+- 미디어 쿼리를 이용한 반응형 웹사이트
+
+  ```js
+  const CreateContainer = styled.div`
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  background-color: rgb(255, 255, 255);
+  width: 60%;
+  height: 90%;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    height: 60%;
+  }
+  @media (max-width: 480px) {
+    width: 70%;
+    height: 70%;
+  }
+  ```
+
+  웹사이트의 크기를 데스크탑, 태블릿, 스마트폰으로 나눠 기기에 맞는 UI를 보여준다
+
+    <br>
+
+- 조건을 눈으로 보여줌
+
+  ```js
+  <ContentLength
+    length={review.roomname.length}
+    limit={25}
+    className="contentLength"
+  >
+    {review.roomname.length}/25
+  </ContentLength>
+  ```
+
+  ```js
+  const ContentLength = styled.div`
+    color: ${({ length, limit }) => (length > limit ? "red" : "black")};
+    margin-left: auto;
+    padding-top: 1%;
+  `;
+  ```
+
+  사용자가 게시물을 작성하거나 수정할 경우 글자수를 눈에 보이게 하여 글자수 제한을 편하게 하고
+  글자수가 넘어갔을 경우 글씨 색을 빨강으로 변경하여 글자수가 초과된것을 알려준다
+
 <br />
 <br />
-<br /> -->
+<br />
 
 <!-- # 💡 Review
 
