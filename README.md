@@ -60,7 +60,7 @@
 
 ### 1. 담당 업무
 
-![신성윤](https://github.com/hyeon12/reactH99TestThree/assets/56420106/4dd285c0-0048-4c85-bf32-81ceb7ec6a02) ![image](https://github.com/hyeon12/reactH99TestThree/assets/56420106/be2a43b6-b7a6-4a7f-94f7-be23a8b574f1) ![Alt text](image.png)
+![신성윤](https://github.com/hyeon12/reactH99TestThree/assets/56420106/4dd285c0-0048-4c85-bf32-81ceb7ec6a02) <img src="https://github.com/hyeon12/escapediary-FE/assets/56420106/d0eed55d-76c8-4e65-a276-7c6aab9a5ab6" width="100" height="150"/> ![image](https://github.com/hyeon12/reactH99TestThree/assets/56420106/be2a43b6-b7a6-4a7f-94f7-be23a8b574f1) ![Alt text](image.png)
 
 - 💖 신성윤: 백엔드 💖
 - 💖 김승훈: 백엔드 💖
@@ -71,7 +71,7 @@
 #### 주요 특징
 
 - 신성윤: 나는야 멋쟁이 조장, 마스터피스, 코딩좀비
-- 김승훈: 코딩 아인슈타인의 환생
+- 김승훈: 신성윤 직속 1번 대장
 - 이소현: 5조 자칭 분위기 메이커
 - 손규리: 겸손 = 규리
 
