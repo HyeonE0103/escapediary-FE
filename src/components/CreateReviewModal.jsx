@@ -82,7 +82,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               value={review.title}
             />
             <ContentLength
-              length={review.content.length}
+              length={review.title.length}
               limit={25}
               className="contentLength"
             >
@@ -99,7 +99,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               value={review.roomname}
             />
             <ContentLength
-              length={review.content.length}
+              length={review.roomname.length}
               limit={25}
               className="contentLength"
             >
@@ -134,7 +134,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
         </CreateTextArea>
         <ContentLength
           length={review.content.length}
-          limit={25}
+          limit={500}
           className="contentLength"
         >
           {review.content.length}/500
@@ -211,6 +211,7 @@ const CreateInput = styled.div`
   width: 48vw;
   display: flex;
   margin: 0 auto;
+  flex-direction: column;
 `;
 const CreateSelect = styled.div`
   width: 48vw;
