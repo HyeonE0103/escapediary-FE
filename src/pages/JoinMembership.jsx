@@ -8,7 +8,7 @@ import Header from "../components/common/Header";
 
 const JoinMembership = () => {
   const [join, setJoin] = useState({ id: "", password: "", confirm: "" });
-  const { goToPath } = useNavigation();
+  const { goToPath, goBack } = useNavigation();
 
   const onChangeHandler = (e) => {
     setJoin({ ...join, [e.target.name]: e.target.value });
@@ -43,8 +43,11 @@ const JoinMembership = () => {
   };
 
   return (
-    <JoinMembershipWrap onSubmit={onClickSubmit}>
-      <JoinMembershipContainer>
+    <JoinMembershipWrap>
+      <div className="backIcon" onClick={goBack}>
+        ←
+      </div>
+      <JoinMembershipContainer onSubmit={onClickSubmit}>
         <JoinMebershipHeader>
           <h1>회원가입</h1>
         </JoinMebershipHeader>
@@ -97,7 +100,7 @@ const JoinMembership = () => {
     </JoinMembershipWrap>
   );
 };
-const JoinMembershipWrap = styled.form`
+const JoinMembershipWrap = styled.div`
   width: 100%;
   height: 90vh;
   display: flex;
@@ -105,8 +108,19 @@ const JoinMembershipWrap = styled.form`
   @media (max-width: 480px) {
     height: 100vh;
   }
+  .backIcon {
+    display: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-left: 0;
+    margin: 5% 0 0 5%;
+    cursor: pointer;
+    @media (max-width: 480px) {
+      display: flex;
+    }
+  }
 `;
-const JoinMembershipContainer = styled.div`
+const JoinMembershipContainer = styled.form`
   width: 50%;
   height: 80%;
   margin: auto;

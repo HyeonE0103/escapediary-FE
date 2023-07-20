@@ -10,7 +10,7 @@ import { getUserData } from "../redux/modules/userSlice";
 
 const Login = () => {
   const [login, setLogin] = useState({ id: "", password: "" });
-  const { goToPath } = useNavigation();
+  const { goToPath, goBack } = useNavigation();
   const dispatch = useDispatch();
 
   const onChangeHandler = (e) => {
@@ -45,6 +45,9 @@ const Login = () => {
 
   return (
     <LoginWrap>
+      <div className="backIcon" onClick={goBack}>
+        ←
+      </div>
       <LoginContainer onSubmit={onClickSumbit}>
         <LoginHeader>
           <h1>Login</h1>
@@ -84,6 +87,17 @@ const LoginWrap = styled.div`
   flex-direction: column;
   @media (max-width: 480px) {
     height: 100vh;
+  }
+  .backIcon {
+    display: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-left: 0;
+    margin: 5% 0 0 5%;
+    cursor: pointer;
+    @media (max-width: 480px) {
+      display: flex;
+    }
   }
 `;
 const LoginContainer = styled.form`

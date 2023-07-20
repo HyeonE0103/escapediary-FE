@@ -126,6 +126,7 @@ const InformationSection = styled.div`
     font-weight: bold;
     font-size: 2rem;
     margin-left: 0;
+    cursor: pointer;
   }
   .informationContent {
     display: flex;
