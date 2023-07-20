@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
-import { Outlet, useNavigate  } from "react-router-dom";
+import useNavigation from "../hooks/useNavigation";
+import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
 
 export const PrivateRoute = () => {
   const isUser = useSelector((state) => state.userData);
@@ -8,8 +10,10 @@ export const PrivateRoute = () => {
 };
 
 const NotUser = () => {
-  const navigate = useNavigate();
-  alert("이미 로그인되어 있습니다");
-  navigate("/");
+  const { goToPath } = useNavigation();
+  useEffect(() => {
+    alert("이미 로그인되어 있습니다");
+    goToPath("/");
+  }, []);
   return null;
 };
