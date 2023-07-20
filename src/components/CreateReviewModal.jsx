@@ -81,6 +81,13 @@ const CreateReviewModal = ({ openModalHandler }) => {
               name="title"
               value={review.title}
             />
+            <ContentLength
+              length={review.content.length}
+              limit={25}
+              className="contentLength"
+            >
+              {review.content.length}/25
+            </ContentLength>
           </CreateInput>
           <CreateInput>
             <Input
@@ -91,6 +98,13 @@ const CreateReviewModal = ({ openModalHandler }) => {
               name="roomname"
               value={review.roomname}
             />
+            <ContentLength
+              length={review.content.length}
+              limit={25}
+              className="contentLength"
+            >
+              {review.content.length}/25
+            </ContentLength>
           </CreateInput>
           <CreateSelect>
             <select
@@ -118,7 +132,11 @@ const CreateReviewModal = ({ openModalHandler }) => {
             required
           ></textarea>
         </CreateTextArea>
-        <ContentLength length={review.content.length} className="contentLength">
+        <ContentLength
+          length={review.content.length}
+          limit={25}
+          className="contentLength"
+        >
           {review.content.length}/500
         </ContentLength>
         <CreateButton>
@@ -230,7 +248,9 @@ const CreateTextArea = styled.div`
   }
 `;
 const ContentLength = styled.div`
-  color: ${({ length }) => (length > 500 ? "red" : "black")};
+  color: ${({ length, limit }) => (length > limit ? "red" : "black")};
+  margin-left: auto;
+  padding: 3% 3% 0 0;
 `;
 
 const CreateButton = styled.div`
