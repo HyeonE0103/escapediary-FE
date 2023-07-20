@@ -14,6 +14,6 @@ const NotUser = () => {
   useEffect(() => {
     alert("이미 로그인되어 있습니다");
     goToPath("/");
-  }, []);
+  }, [goToPath]);
   return null;
 };
