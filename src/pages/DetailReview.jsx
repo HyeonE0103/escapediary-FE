@@ -15,7 +15,6 @@ const DetailReview = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const openModalHandler = () => {
-    console.log("test!!!");
     setOpenModal(!openModal);
   };
 

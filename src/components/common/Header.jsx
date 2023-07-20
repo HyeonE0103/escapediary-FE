@@ -57,6 +57,7 @@ const HeaderWrap = styled.div`
   box-sizing: border-box;
   display: flex;
   @media (max-width: 480px) {
+    padding: 0 1rem;
     display: ${({ main }) => !main && "none"};
   }
   p {
@@ -64,6 +65,9 @@ const HeaderWrap = styled.div`
     color: white;
     font-weight: bold;
     cursor: pointer;
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
   }
 `;
 export default Header;
