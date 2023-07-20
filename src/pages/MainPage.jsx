@@ -44,21 +44,10 @@ const MainPage = () => {
     }
   }, [page]);
 
-  const onClickTestHandler = async () => {
-    try {
-      const api = process.env.REACT_APP_URL + "user";
-      const response = await axios.get(api, { withCredentials: true });
-      console.log("새로고침시 토큰 확인", response.data); //유저조회 확인
-    } catch (error) {
-      console.error("유저 조회 실패:", error);
-    }
-  };
-
   console.log("메인 post 조회", data);
   return (
     <WrapMain>
       <Header />
-      <Button onClick={onClickTestHandler}>테스트 버튼</Button>
       <MainBody>
         <div className="MainButtonSection">
           <Button color={"black"} size={"medium"} onClick={openModalHandler}>
