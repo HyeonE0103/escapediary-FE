@@ -55,10 +55,6 @@ const HeaderWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  display: ${(buttonShow) => (buttonShow === "login" ? "none" : "flex")};
-  @media (max-width: 480px) {
-    display: none;
-  }
 
   p {
     font-size: 2.5rem;
