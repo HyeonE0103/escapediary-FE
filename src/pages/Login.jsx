@@ -45,7 +45,6 @@ const Login = () => {
 
   return (
     <LoginWrap>
-      {/* <Header buttonShow={"login"} /> */}
       <LoginContainer onSubmit={onClickSumbit}>
         <LoginHeader>
           <h1>Login</h1>

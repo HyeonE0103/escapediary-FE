@@ -7,6 +7,7 @@ import axios from "axios";
 import Pagenation from "../components/common/Pagenation";
 import CreateReviewModal from "../components/CreateReviewModal";
 import { useSelector } from "react-redux";
+import Header from "../components/common/Header";
 
 const MainPage = () => {
   const { goToPath } = useNavigation();
@@ -46,6 +47,7 @@ const MainPage = () => {
   console.log("메인 post 조회", data);
   return (
     <WrapMain>
+      <Header main={"main"} />
       <MainBody>
         <div className="MainButtonSection">
           <Button color={"black"} size={"medium"} onClick={openModalHandler}>

@@ -7,7 +7,7 @@ import axios from "axios";
 import { deleteUserData } from "../../redux/modules/userSlice";
 import { Outlet } from "react-router-dom";
 
-const Header = ({ buttonShow }) => {
+const Header = ({ main }) => {
   const userData = useSelector((state) => state.userData);
   const { goToPath } = useNavigation();
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Header = ({ buttonShow }) => {
   };
   return (
     <>
-      <HeaderWrap buttonShow={buttonShow}>
+      <HeaderWrap main={main}>
         <p onClick={() => goToPath("/")}>EscapeDiary</p>
         {userData ? (
           <Button color={"white"} size={"small"} onClick={logOut}>
@@ -55,7 +55,10 @@ const HeaderWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-
+  display: flex;
+  @media (max-width: 480px) {
+    display: ${({ main }) => !main && "none"};
+  }
   p {
     font-size: 2.5rem;
     color: white;
