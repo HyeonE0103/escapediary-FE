@@ -12,14 +12,11 @@ const Header = ({ main }) => {
   const { goToPath } = useNavigation();
   const dispatch = useDispatch();
 
-  console.log("헤더 유저 데이터", userData);
-
   const logOut = async () => {
     const api = process.env.REACT_APP_URL + "logout";
     await axios
       .post(api)
       .then((res) => {
-        console.log(res.data);
         dispatch(deleteUserData());
       })
       .catch((err) => {

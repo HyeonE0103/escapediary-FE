@@ -27,9 +27,6 @@ const JoinMembership = () => {
     } else if (join.password.trim() !== join.confirm.trim()) {
       alert("비밀번호를 다시 확인해주세요.");
     } else {
-      console.log("id", join.id, typeof join.id);
-      console.log("password", join.password, typeof join.password);
-      console.log("confirm", join.confirm, typeof join.confirm);
       const api = process.env.REACT_APP_URL + "signup";
       axios
         .post(api, {

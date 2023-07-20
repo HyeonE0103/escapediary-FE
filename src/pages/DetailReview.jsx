@@ -23,7 +23,6 @@ const DetailReview = () => {
       const url = process.env.REACT_APP_URL + `posts/${postId.postid}`;
       try {
         const apiData = await axios.get(url);
-        console.log(apiData.data);
         const postData = apiData.data["post"];
         setData(postData);
       } catch (e) {
@@ -43,8 +42,6 @@ const DetailReview = () => {
     }
   };
 
-  console.log("상세 post 조회", data);
-  user !== null && console.log("상세 user id 조회", user["data"].id);
   return (
     <DetailWrap>
       {data && (

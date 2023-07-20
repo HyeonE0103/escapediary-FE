@@ -26,7 +26,6 @@ const Login = () => {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
         onClickUserShow();
         goToPath("/");
       })
@@ -36,7 +35,6 @@ const Login = () => {
     try {
       const api = process.env.REACT_APP_URL + "user";
       const response = await axios.get(api, { withCredentials: true });
-      console.log("로그인시 유저 데이터", response.data); //유저조회 확인
       dispatch(getUserData(response.data));
     } catch (error) {
       console.error("유저 조회 실패:", error);

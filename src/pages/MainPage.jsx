@@ -17,8 +17,6 @@ const MainPage = () => {
   const limit = 5;
   const offset = (page - 1) * limit;
   const userData = useSelector((state) => state.userData);
-  console.log("메인페이지 유저 데이터", userData);
-
   const [openModal, setOpenModal] = useState(false);
   const openModalHandler = () => {
     userData ? setOpenModal(!openModal) : GoToLogin();
@@ -50,7 +48,6 @@ const MainPage = () => {
     }
   }, [page]);
 
-  console.log("메인 post 조회", data);
   return (
     <WrapMain>
       <Header main={"main"} />
