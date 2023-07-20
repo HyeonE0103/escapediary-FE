@@ -86,7 +86,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               limit={25}
               className="contentLength"
             >
-              {review.content.length}/25
+              {review.title.length}/25
             </ContentLength>
           </CreateInput>
           <CreateInput>
@@ -103,7 +103,7 @@ const CreateReviewModal = ({ openModalHandler }) => {
               limit={25}
               className="contentLength"
             >
-              {review.content.length}/25
+              {review.roomname.length}/25
             </ContentLength>
           </CreateInput>
           <CreateSelect>
@@ -203,7 +203,7 @@ const CreateBody = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 `;
 
@@ -236,12 +236,13 @@ const CreateTextArea = styled.div`
   }
   display: flex;
   margin: 0 auto;
+  flex-direction: column;
   textarea {
     border: 1px solid rgb(221, 221, 221);
-    width: 100%;
     outline: none;
     border-radius: 0.5rem;
     padding: 1rem;
+    flex: 1;
   }
   textarea::placeholder {
     font-family: sans-serif;
