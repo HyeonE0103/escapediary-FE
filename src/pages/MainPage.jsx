@@ -21,7 +21,13 @@ const MainPage = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const openModalHandler = () => {
-    userData ? setOpenModal(!openModal) : alert("로그인이 필요합니다.");
+    userData ? setOpenModal(!openModal) : GoToLogin();
+  };
+
+  const GoToLogin = () => {
+    alert("로그인 후 이용 가능합니다.");
+    goToPath("/login");
+    return null;
   };
 
   useEffect(() => {

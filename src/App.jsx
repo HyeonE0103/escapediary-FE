@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import DetailReview from "./pages/DetailReview";
 import Login from "./pages/Login";
 import JoinMembership from "./pages/JoinMembership";
+import NonExistent from "./pages/NonExistent";
 import Header from "./components/common/Header";
 import { PrivateRoute } from "./router/PrivateRoute";
 
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="login" element={<Login />} />
           <Route path="join-membership" element={<JoinMembership />} />
         </Route>
-        <Route path="*" element={<JoinMembership />} />
+        <Route path="*" element={<NonExistent />} />
       </Route>
     </Routes>
   );
