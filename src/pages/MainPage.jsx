@@ -13,7 +13,7 @@ const MainPage = () => {
   const [data, setData] = useState(null);
   const [posts, setPosts] = useState(null);
   const [page, setPage] = useState(1);
-  const limit = 6;
+  const limit = 5;
   const offset = (page - 1) * limit;
   const userData = useSelector((state) => state.userData);
   console.log("메인페이지 유저 데이터", userData);

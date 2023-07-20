@@ -44,7 +44,6 @@ const JoinMembership = () => {
 
   return (
     <JoinMembershipWrap onSubmit={onClickSubmit}>
-      <Header />
       <JoinMembershipContainer>
         <JoinMebershipHeader>
           <h1>회원가입</h1>
@@ -100,9 +99,12 @@ const JoinMembership = () => {
 };
 const JoinMembershipWrap = styled.form`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
+  @media (max-width: 480px) {
+    height: 100vh;
+  }
 `;
 const JoinMembershipContainer = styled.div`
   width: 50%;

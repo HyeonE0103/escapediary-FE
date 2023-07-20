@@ -96,7 +96,7 @@ const DetailReview = () => {
 };
 const DetailWrap = styled.div`
   width: 100%;
-  height: 95vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   @media (max-width: 480px) {
