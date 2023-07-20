@@ -186,7 +186,7 @@ const ContentSection = styled.div`
   .contentContent {
     flex: 3;
     margin: 2% 0 0 2%;
-    padding: 2%;
+    padding: 5%;
     box-sizing: border-box;
     border: 1px #d8d8d8 solid;
     font-size: 1.2rem;

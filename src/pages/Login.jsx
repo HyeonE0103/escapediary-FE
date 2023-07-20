@@ -4,7 +4,6 @@ import { styled } from "styled-components";
 import Input from "../components/common/Input";
 import useNavigation from "../hooks/useNavigation";
 import axios from "axios";
-import Header from "../components/common/Header";
 import { useDispatch } from "react-redux";
 import { getUserData } from "../redux/modules/userSlice";
 

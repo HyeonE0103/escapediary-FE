@@ -118,6 +118,9 @@ const CreateReviewModal = ({ openModalHandler }) => {
             required
           ></textarea>
         </CreateTextArea>
+        <ContentLength length={review.content.length} className="contentLength">
+          {review.content.length}/500
+        </ContentLength>
         <CreateButton>
           <Button onClick={openModalHandler} color={"white"} size={"small"}>
             닫기
@@ -225,6 +228,9 @@ const CreateTextArea = styled.div`
     font-family: sans-serif;
     color: rgb(133, 133, 133);
   }
+`;
+const ContentLength = styled.div`
+  color: ${({ length }) => (length > 500 ? "red" : "black")};
 `;
 
 const CreateButton = styled.div`
